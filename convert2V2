@@ -1,0 +1,23 @@
+#!/usr/local/bin/python3
+
+import os
+
+# Datei einlesen
+dir = os.popen("ls *.py").readlines()
+for f in dir:
+    with open(f[:-1]) as file:
+        allezeilen = file.readlines()
+
+    anzzeilen = len(allezeilen)
+
+    if "/usr/bin/python" not in allezeilen[0]:
+        d = open(f[:-1], 'w')
+        d.write("#!/usr/bin/python\n")
+        d.write("# -*- coding: utf-8 -*-\n")
+        d.write("from __future__ import print_function\n")
+
+        for z in range(1, anzzeilen):
+            d.write(allezeilen[z])
+        d.close()
+    else:
+        print(f[:-1], "ist schon Python V2")

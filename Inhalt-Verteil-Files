@@ -1,0 +1,27 @@
+#!/bin/bash
+##############################################
+#
+# Name: verteil_files
+#
+# Author: Peter Christen
+#
+# Version: 1.0
+# 
+# Date: 20.11.2016
+#
+# Purpose: Verteilt die Python Kurs Files in ihre Verzeichnisse
+#
+##############################################
+
+pfad="/Users/peter/Dropbox/Python"
+
+for i in `ls Inhalt-Beispiele*`
+do
+   zieldire=`echo $i | cut -f2 -d "-"`
+   dire=$pfad/$zieldire
+   
+   for f in `cat $i`
+   do
+      cp $f $dire
+   done
+done
