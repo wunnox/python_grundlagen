@@ -1,14 +1,13 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/python3
 ##############################################
 #
 # Name: UB7.4_distanzen.py
 #
 # Author: Peter Christen
 #
-# Version: 1.0
+# Version: 1.1
 #
-# Date: 12.01.2016
+# Date: 08.09.2020
 #
 # Purpose: Liest Adressen ein ung gibt deren
 #          Geo-Positionen aus und berechnet
@@ -17,10 +16,13 @@
 ##############################################
 
 from geopy.geocoders import Nominatim
-from geopy.distance import vincenty
+from geopy import distance
+
+#from geopy.distance import vincenty
 
 # Variabeln
-geolocator = Nominatim()
+geolocator = Nominatim(user_agent="geoapiExercises")
+
 
 # Adresse bestimmen
 digizh = geolocator.geocode("Limmatstrasse 50, 8005 Zürich")
@@ -31,9 +33,9 @@ digizhkoord = (digizh.latitude, digizh.longitude)
 digibekoord = (digibe.latitude, digibe.longitude)
 
 # Distanz berechnen
-distanz = vincenty(digizhkoord, digibekoord).km
+distanz = distance.distance(digizhkoord, digibekoord).km
 
 # Angaben ausgeben
-print "Standort Zürich Koordinaten: ", digizhkoord
-print "Standort Bern Koordinaten  : ", digibekoord
-print "Distanz dazwischen         : ", distanz, "km"
+print("Standort Zürich Koordinaten: ", digizhkoord)
+print("Standort Bern Koordinaten  : ", digibekoord)
+print("Distanz dazwischen         : ", distanz, "km")
