@@ -16,7 +16,8 @@ Anzahl = 0
 for i in tup1:
     if i > maxZahl:
         maxZahl = i
-        Anzahl = tup1.count(i)
+
+Anzahl = tup1.count(maxZahl)
 
 # Ausgabe
 print("Häufigstes Element ist die", maxZahl, "mit", Anzahl, "Treffern")
