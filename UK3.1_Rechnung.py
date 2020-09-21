@@ -44,7 +44,7 @@ while True:
       print("Zahlung :", zahlung)
       differenz=zahlung-rechnung
       if differenz > 0:
-          print("Sie kriegen Fr.",differenz,"zurück")
+          print("Sie kriegen",differenz,"zurück")
           abschluss()
       elif differenz==0:
           print("Passt genau")
