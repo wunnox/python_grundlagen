@@ -18,10 +18,10 @@ d = open("Erlkoenig.txt", "r+")
 allezeilen = d.readlines()
 
 #e auf E anpassen
-d.seek(76)
+d.seek(79)
 print(d.tell())
 d.write('E')
-d.seek(111)
+d.seek(114)
 print(d.tell())
 d.write('E')
 d.close()
