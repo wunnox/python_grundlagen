@@ -1,41 +1,31 @@
 #!/usr/local/bin/python3
 ##############################################
 #
-# Name: U6.1_Bankkonto.py
+# Name: U6.3_Bankkonto.py
 #
 # Author: Peter Christen
 #
 # Version: 1.0
 # 
-# Date: 22.05.2020
+# Date: 14.07.2021
 #
 # Purpose: Kontoverwaltung
-#          Datenausgaben
+#          Auszahlen 
 #
 ##############################################
 
-import datetime
+import datetime, time
 
 #Klassen
 class Konto:
-  #Klassenvariable
-  now = datetime.datetime.now()
-
   #Konstruktor Methode
   def __init__(self,ktnr):
-      #Attribute
       self.kontonummer=ktnr
 
   #Weitere Methode
   def kontostand_erfassen(self,kontostand):
       self.kontostand=kontostand
-      self.aenderung_kontostand=Konto.now.strftime("%d.%m.%Y %H:%M:%S")
-
-  def personalien_erfassen(self,vn,nn,ort):
-      self.vorname=vn
-      self.nachname=nn
-      self.wohnort=ort
-      self.aenderung_personalien=Konto.now.strftime("%d.%m.%Y")
+      self.aenderung_kontostand=self.aktueller_zeitstempel()
 
   def daten_ausgeben(self):
       print ("######################")
@@ -45,16 +35,38 @@ class Konto:
       print ("Kontostand:", "{:.2f}".format(self.kontostand))
       print ("per Stichtag:", self.aenderung_kontostand)
       print ()
-      print ("Kontoinhaber:",self.vorname,self.nachname)
-      print ("Wohnort:",self.wohnort)
-      print ("Letzte Anpassung:",self.aenderung_personalien)
-      print ()
+
+  def aktueller_zeitstempel(self):
+      self.now = datetime.datetime.now()
+      return self.now.strftime("%d.%m.%Y %H:%M:%S")
+
+class Transaktionen(Konto):
+  def __init__(self,ktnr):
+      Konto.__init__(self,ktnr)
+
+  def einzahlen(self,betrag):
+      self.kontostand+=betrag
+      self.aenderung_kontostand=self.aktueller_zeitstempel()
+
+  def auszahlen(self,betrag):
+      self.kontostand-=betrag
+      self.aenderung_kontostand=self.aktueller_zeitstempel()
 
 #Objekt/Daten erfassen
-konto1=Konto("12345-1")
+konto1=Transaktionen("12345-1")
 konto1.kontostand_erfassen(200)
-konto1.personalien_erfassen('Max','Muster','Musterlingen')
 
 #Daten ausgeben
 konto1.daten_ausgeben()
 
+time.sleep(2)
+
+#Geld einbezahlen
+konto1.einzahlen(1000)
+konto1.daten_ausgeben()
+
+time.sleep(2)
+
+#Geld auszahlen
+konto1.auszahlen(500)
+konto1.daten_ausgeben()

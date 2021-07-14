@@ -29,7 +29,7 @@ class Konto:
   #Weitere Methode
   def kontostand_erfassen(self,kontostand):
       self.kontostand=kontostand
-      self.aenderung_kontostand=self.now.strftime("%d.%m.%Y %H:%M:%S")
+      self.aenderung_kontostand=Konto.now.strftime("%d.%m.%Y %H:%M:%S")
 
   def daten_ausgeben(self):
       print ("######################")
