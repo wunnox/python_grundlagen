@@ -5,10 +5,11 @@
 #
 # Author: Peter Christen
 #
-# Version: 1.1
+# Version: 1.2
 #
 # Date: 20.11.2015
-# Date: 22.01.2017 Argparse ergänzt
+#       22.01.2017 V1.1 Argparse ergänzt
+#       27.09.2021 V1.2 workbook-Aufruf angepasst
 #
 # Purpose: Liest xlsx-Dateien mit Firewall Logs ein
 #
@@ -110,8 +111,8 @@ def colsize(col):
 if readlog == 1:
     # xlsx-File öffnen
     wb = load_workbook(filename=sourcefile, read_only=True)
-    first_sheet = wb.get_sheet_names()[0]
-    worksheet = wb.get_sheet_by_name(first_sheet)
+    sheet1 = wb.worksheets[0]
+    worksheet = wb[sheet1.title]
 
     # xlsx-File einlesen
     r = 0

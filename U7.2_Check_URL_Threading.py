@@ -24,7 +24,7 @@ def get_url(url):  # Funktion
     threads.append(url)
     try:
         response.append(urllib.request.urlopen(url).read())
-    except BaseException:
+    except Exception:
         response.append("Probleme mit " + url)
     threads.remove(url)
 

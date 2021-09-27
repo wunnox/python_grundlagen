@@ -20,7 +20,7 @@ urls = [
 def get_url(url):  # Funktion
     try:
         response.append(urllib.request.urlopen(url).read())
-    except BaseException:
+    except Exception:
         response.append("Probleme mit " + url)
 
 

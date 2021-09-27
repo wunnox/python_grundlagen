@@ -12,13 +12,13 @@
 #### Lösung: ####
 
 # Eingabe
-print("Bitte geben Sie eine ganze Zahl ein")
-z = input("-> ")
+z = input("Bitte geben Sie eine ganze Zahl ein: ")
 
 # Versuch der Berechnung
 try:
+    z=int(z)
     print(z + 5)
 
 # Fehler bei Umwandlung
-except BaseException:
+except Exception:
     print(z, "ist keine Zahl")

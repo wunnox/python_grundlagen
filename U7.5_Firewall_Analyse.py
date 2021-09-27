@@ -76,8 +76,8 @@ def read_excel():
     wb = load_workbook(
         filename='U7.5_Firewall_Log_Auszug.xlsx',
         read_only=True)
-    first_sheet = wb.get_sheet_names()[0]
-    worksheet = wb.get_sheet_by_name(first_sheet)
+    sheet1 = wb.worksheets[0]
+    worksheet = wb[sheet1.title]
 
     # xlsx-File einlesen
     r = 0
