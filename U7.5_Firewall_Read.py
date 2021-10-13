@@ -14,9 +14,7 @@
 #
 ##############################################
 
-import string
 import sys
-import os
 from openpyxl import load_workbook
 
 # Auf Fileangaben prüfen
