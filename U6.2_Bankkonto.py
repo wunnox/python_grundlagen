@@ -18,8 +18,6 @@ import datetime, time
 
 #Klassen
 class Konto:
-  #Klassenvariable
-  now = datetime.datetime.now()
 
   #Konstruktor Methode
   def __init__(self,ktnr):
@@ -27,8 +25,9 @@ class Konto:
 
   #Weitere Methode
   def kontostand_erfassen(self,kontostand):
+      now = datetime.datetime.now()
       self.kontostand=kontostand
-      self.aenderung_kontostand=Konto.now.strftime("%d.%m.%Y %H:%M:%S")
+      self.aenderung_kontostand=now.strftime("%d.%m.%Y %H:%M:%S")
 
   def daten_ausgeben(self):
       print ("######################")
@@ -44,14 +43,14 @@ class Transaktionen(Konto):
       Konto.__init__(self,ktnr)
 
   def einzahlen(self,betrag):
-      self.now = datetime.datetime.now()
+      now = datetime.datetime.now()
       self.kontostand+=betrag
-      self.aenderung_kontostand=self.now.strftime("%d.%m.%Y %H:%M:%S")
+      self.aenderung_kontostand=now.strftime("%d.%m.%Y %H:%M:%S")
 
   def auszahlen(self,betrag):
-      self.now = datetime.datetime.now()
+      now = datetime.datetime.now()
       self.kontostand-=betrag
-      self.aenderung_kontostand=self.now.strftime("%d.%m.%Y %H:%M:%S")
+      self.aenderung_kontostand=now.strftime("%d.%m.%Y %H:%M:%S")
 
 #Objekt/Daten erfassen
 konto1=Transaktionen("12345-1")

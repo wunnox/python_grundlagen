@@ -18,8 +18,6 @@ import datetime
 
 #Klassen
 class Konto:
-  #Klassenvariable
-  now = datetime.datetime.now()
 
   #Konstruktor Methode
   def __init__(self,ktnr):
@@ -28,14 +26,16 @@ class Konto:
 
   #Weitere Methode
   def kontostand_erfassen(self,kontostand):
+      now = datetime.datetime.now()
       self.kontostand=kontostand
-      self.aenderung_kontostand=Konto.now.strftime("%d.%m.%Y %H:%M:%S")
+      self.aenderung_kontostand=now.strftime("%d.%m.%Y %H:%M:%S")
 
   def personalien_erfassen(self,vn,nn,ort):
+      now = datetime.datetime.now()
       self.vorname=vn
       self.nachname=nn
       self.wohnort=ort
-      self.aenderung_personalien=Konto.now.strftime("%d.%m.%Y")
+      self.aenderung_personalien=now.strftime("%d.%m.%Y")
 
   def daten_ausgeben(self):
       print ("######################")

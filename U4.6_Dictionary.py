@@ -2,27 +2,25 @@
 ####################################################
 #
 # Uebung:
-# Erstellen Sie folgendes Tupel:
-# a=('Peter','Hans','Fred','Hans','Ursula','Robert','Ursula','Hans')
-#
-# Listen Sie jeden Namen in obigem Tupel nur einmal auf gefolgt von einer Zahl,
-# die angibt, wie oft dieser Name im Tupel vorkommt. Dazu benötigen Sie folgende
-# Elemente ein Dictionary, zwei for-Schlaufen und eine if/else-Bedingung.
-#
-# Geben Sie das Resultat auf dem Bildschirm aus
+# Erstellen Sie ein Dictionary mit folgenden Angaben:
+#   1234-1	Zopf
+#   2345-1	Gipfeli
+#   3456-1	Tessiner
+#   4567-1	Weggli
+
+# Lesen Sie das Dictionary ein und erzeugen Sie damit folgende Ausgabe
+# Art.Nr Artikel
+# 1234-1 Zopf
+# 2345-1 Gipfeli
+# 3456-1 Tessiner
+# 4567-1 Weggli
 #
 ####################################################
 
 #### Lösung: ####
 
-a = ('Peter', 'Hans', 'Fred', 'Hans', 'Ursula', 'Robert', 'Ursula', 'Hans')
-d = {}
+artikel = {"1234-1":"Zopf","2345-1":"Gipfeli","3456-1":"Tessiner","4567-1":"Weggli"}
 
-for n in a:
-    if n in d.keys():
-        d[n] += 1
-    else:
-        d[n] = 1
-
-for n, a in d.items():
-    print(n, a)
+print("Art.Nr Artikel")
+for artnr,art in artikel.items():
+    print(artnr, art)

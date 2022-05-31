@@ -37,8 +37,8 @@ class Konto:
       print ()
 
   def aktueller_zeitstempel(self):
-      self.now = datetime.datetime.now()
-      return self.now.strftime("%d.%m.%Y %H:%M:%S")
+      now = datetime.datetime.now()
+      return now.strftime("%d.%m.%Y %H:%M:%S")
 
 class Transaktionen(Konto):
   def __init__(self,ktnr):

@@ -1,28 +1,34 @@
-#!/usr/local/bin/python3
+#!env python3
 ####################################################
 #
 # Uebung:
-# Erstellen Sie eine Funktion, welche die Distanzen nach Chur via Zürich von den Städten
-# Bern, Basel und Luzern berechnet, je nach dem welcher Weg nach Zürich gewählt wird.
-# D.h. es gibt je eine Standard-Strecken nach Zürich, aber es können auch längere gewählt werden.
-# Die Distanz von Zürich nach Chur ist fix 119km
-# Die Standard Strecken sind: Bern: 125km, Basel: 85km, Luzern: 51km
-# Für die Übung wählen Sie folgende variablen Distanzen Bern: 145km, Luzern 60km
-# Sie sollten ein Resultat analog zu diesem kriegen:
-# Bern: 264 Basel: 204 Luzern: 179
+# Erstellen Sie eine Funktionen, welche folgende Angaben zu einem Zylinder berechnet:
+# - den Umfang: r*2*3.14
+# - die Grundfläche: r*r*3.14
+# - das Volumen: r*r*3.14*h
+#
+# Es sollen r=radius und h=Höhe übergeben werden. Die Höhe soll einen Standardwert von 10 haben
+# Sie sollten ein Resultat analog zu diesem kriegen (auf eine Kommastelle gerundet)::
+#
+#   Angaben Zylinder:
+#   Umfang: 31.4
+#   Fläche: 78.5
+#   Volumen: 942.0
 #
 ####################################################
 
 #### Lösung: ####
 
-def Distanzen(bern=125, basel=85, luzern=51):
-    chur = 119
-    bern = bern + chur
-    basel = basel + chur
-    luzern = luzern + chur
-    return bern, basel, luzern
+def zylinder(r,h=10):
+    pi=3.14
+    umfang = round(r*2*pi,1)
+    fläche = round(r**2*pi,1)
+    volumen = round(r**2*pi*h,1)
+    return umfang, fläche, volumen
 
-bern, basel, luzern = Distanzen(145, luzern=60)
+u, f, v = zylinder(5,12)
 
-print("Distanzen nach Chur via Zürich:")
-print("Bern:", bern, "Basel:", basel, "Luzern:", luzern)
+print("Angaben Zylinder")
+print("Umfang:", u)
+print("Fläche:", f)
+print("Volumen:", v)

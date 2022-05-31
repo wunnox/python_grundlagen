@@ -5,9 +5,10 @@
 #
 # Author: Peter Christen
 #
-# Version: 1.0
+# Version: 1.1
 # 
 # Date: 22.05.2020
+#       05.05.2022 V1.1 Zeitanpassung
 #
 # Purpose: Kontoverwaltung
 #          Daten ausgeben
@@ -18,8 +19,6 @@ import datetime
 
 #Klassen
 class Konto:
-  #Klassenvariable
-  now = datetime.datetime.now()
 
   #Konstruktor Methode
   def __init__(self,ktnr):
@@ -28,8 +27,9 @@ class Konto:
 
   #Weitere Methode
   def kontostand_erfassen(self,kontostand):
+      now = datetime.datetime.now()
       self.kontostand=kontostand
-      self.aenderung_kontostand=Konto.now.strftime("%d.%m.%Y %H:%M:%S")
+      self.aenderung_kontostand=now.strftime("%d.%m.%Y %H:%M:%S")
 
   def daten_ausgeben(self):
       print ("######################")

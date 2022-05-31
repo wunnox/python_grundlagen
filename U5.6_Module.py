@@ -2,25 +2,30 @@
 ####################################################
 #
 # Uebung:
-# Erstellen Sie ein Modul, welches die Berechnungen
-# der Distanzen nach Chur via Zürich beinhaltet.
+# Erstellen Sie ein Modul, welches folgende Angaben zu einem Zylinder berechnet:
+# - den Umfang: r*2*3.14
+# - die Grundfläche: r*r*3.14
+# - das Volumen: r*r*3.14*h
 #
 ####################################################
 
 #### Lösung: ####
 
-# Inhalt Datei U56_modul_Distanz.py:
+# Inhalt Datei U56_modul_Zylinder.py:
 #####################################
-# def Distanzen(bern=125,basel=85,luzern=51):
-#   chur=119
-#   bern=bern+chur
-#   basel=basel+chur
-#   luzern=luzern+chur
-#   return bern,basel,luzern
+#def zylinder(r,h=10):
+#    pi=3.14
+#    umfang = round(r*2*pi,1)
+#    fläche = round(r**2*pi,1)
+#    volumen = round(r**2*pi*h,1)
+#    return umfang, fläche, volumen
 #####################################
 
-import U56_modul_Distanz as dis
+import U56_modul_Zylinder as zyl
 
-bern, basel, luzern = dis.Distanzen(135, 92)
-print("Distanzen nach Chur via Zürich:")
-print("Bern;", bern, "Basel:", basel, "Luzern:", luzern)
+u, f, v = zyl.zylinder(5,12)
+
+print("Angaben Zylinder")
+print("Umfang:", u)
+print("Fläche:", f)
+print("Volumen:", v)
