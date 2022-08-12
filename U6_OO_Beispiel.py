@@ -1,7 +1,7 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 ##############################################
 #
-# Name: OO_Beispiel.py
+# Name: U6_OO_Beispiel.py
 #
 # Author: Peter Christen
 #
@@ -17,25 +17,24 @@
 auto = {}
 
 # Classes
-
-
 class Auto:
+    '''Klasse zum Erfassen und Verwalten von Fahrzeugen'''
+
     def __init__(self, marke):
         self.marke = marke
         self.sitze = 0
         self.speed = 0
 
 # Functions
-
-
 def ErsteAuswahl():
+    '''Erste Auswahl zum Fahrzeug erfassen oder Fahrzeit berechnen'''
+
     print("Treffen sie Eine Auswahl:")
     print("Neues Fahrzeug erfassen:     n")
     print("Fahrtzeit berechnen:         f")
     print("Ende:                        e")
     q = input('-> ')
     return q
-
 
 # Basis Fahrzeuge erfassen
 auto['Opel'] = Auto('Opel')
