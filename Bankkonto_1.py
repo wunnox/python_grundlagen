@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 ##############################################
 #
 # Name: Bankkonto_1.py
@@ -18,6 +18,7 @@ import time
 
 #Klassen
 class Konto:
+  '''Klasse Konto zur Verwaltung von Bankkonten'''
 
   #Konstruktor Methode
   def __init__(self,ktnr):

@@ -1,4 +1,17 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
+##############################################
+#
+# Name: U7_5_read_csv.py
+#
+# Author: Peter Christen
+#
+# Version: 1.1
+#
+# Date: 05.11.2015 V1.0
+#
+# Purpose: Liest ein cvs-File ein und schreibt Daten auf Bildschirm
+#
+##############################################
 
 import csv
 

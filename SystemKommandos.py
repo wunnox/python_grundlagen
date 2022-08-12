@@ -1,4 +1,17 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
+##############################################
+#
+# Name: SystemKommandos.py
+#
+# Author: Peter Christen
+#
+# Version: 1.1
+#
+# Date: 05.11.2015 V1.0
+#
+# Purpose: Beispiele mit os.popen und os.system
+#
+##############################################
 
 import os
 

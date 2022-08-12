@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 ##############################################
 #
 # Name: Bankkonto_2.py
@@ -20,6 +20,7 @@ import datetime
 
 #Klassen
 class Konto:
+  '''Klasse Konto zur Verwaltung von Bankkonten'''
 
   #Konstruktor Methode
   def __init__(self,ktnr):
@@ -28,6 +29,8 @@ class Konto:
 
   #Weitere Methode
   def kontostand_erfassen(self,kontostand):
+      '''Initialer Kontostand erfassen'''
+
       now = datetime.datetime.now()
       self.kontostand=kontostand
       self.aenderung_kontostand=now.strftime("%d.%m.%Y %H:%M:%S")
