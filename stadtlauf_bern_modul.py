@@ -18,26 +18,23 @@ import pygame
 
 #Initialisierung
 pygame.init()
-screen = pygame.display.set_mode((1055,652))
+screen = pygame.display.set_mode((1050,400))
 pygame.display.set_caption("Spaziergang durch Bern")
 
 #Bilder
 walkRight = [pygame.image.load('Bilder/R1.png'), pygame.image.load('Bilder/R2.png'), pygame.image.load('Bilder/R3.png'), pygame.image.load('Bilder/R4.png'), pygame.image.load('Bilder/R5.png'), pygame.image.load('Bilder/R6.png'), pygame.image.load('Bilder/R7.png'), pygame.image.load('Bilder/R8.png'), pygame.image.load('Bilder/R9.png')]
 walkLeft = [pygame.image.load('Bilder/L1.png'), pygame.image.load('Bilder/L2.png'), pygame.image.load('Bilder/L3.png'), pygame.image.load('Bilder/L4.png'), pygame.image.load('Bilder/L5.png'), pygame.image.load('Bilder/L6.png'), pygame.image.load('Bilder/L7.png'), pygame.image.load('Bilder/L8.png'), pygame.image.load('Bilder/L9.png')]
-bg = pygame.image.load('Bilder/karte-bern.jpg')
+bg = pygame.image.load('Bilder/karte-bern_kl.jpg')
 char = pygame.image.load('Bilder/standing.png')
 
 #Variablen
 font = pygame.font.SysFont('Comic Sans MS', 20)
 clock = pygame.time.Clock()
 x = 20
-y = 180
+y = 155
 xt=0
 yt=0
-width = 40
-height = 60
-end=1055
-vel = 1
+end=1050
 left = False
 right = False
 walkCount = 0
@@ -70,13 +67,34 @@ def redrawGameWindow(text2show=None,xt=x,yt=y):
         
     pygame.display.update() 
     
-def go_left(schritte=0):
+def go_walk_right(gx,gy):
+   '''Läuft nach einem vorgegebenen Plan'''
+
+   global x,y,left,right
+
+   x,y=gx,gy
+   left = False
+   right = True
+
+   return x
+
+def go_walk_left(gx,gy):
+   '''Läuft nach einem vorgegebenen Plan'''
+
+   global x,y,left,right
+
+   x,y=gx,gy
+   left = True
+   right = False
+
+   return x
+
+def go_left(steps=1):
    '''Nach links gehen'''
 
    global x,left,right
 
    if x > 1:
-      steps=vel+schritte
       x -= steps
       left = True
       right = False
@@ -84,13 +102,12 @@ def go_left(schritte=0):
    else:
       go_stop()
 
-def go_right(schritte=0):
+def go_right(steps=1):
    '''Nach rechts gehen'''
 
    global x,left,right
      
-   if x < end - vel - width:
-      steps=vel+schritte
+   if x < end:
       x += steps
       left = False
       right = True
@@ -107,20 +124,20 @@ def go_stop():
    right = False
    walkCount = 0
 
-def go_up(schritte=1):
+def go_up(steps=1):
    '''Nach oben gehen'''
 
    global y
 
-   y-=schritte
+   y-=steps
    return y
 
-def go_down(schritte=1):
+def go_down(steps=1):
    '''Nach unten gehen'''
 
    global y
 
-   y+=schritte
+   y+=steps
    return y
 
 def check_key():

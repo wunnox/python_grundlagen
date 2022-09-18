@@ -2,10 +2,12 @@
 ####################################################
 #
 # Uebung:
-# Erweitern Sie das Programm so, dass die Figur bis zum Zytglogge Turm läuft.
+# Fügen Sie im markierten Bereich folgenden Code ein:
 #
-# Achten Sie darauf, dass sie auf der Marktgasse bleibt und nicht in die Häuser läuft.
-# Wenn sie beim Zytglogge Turm ankommt, soll die entsprechende Bezeichnung des Turms "Zytglogge" erscheinen.
+#   - Lassen Sie die Figur mit einer for-Schleife bis zum Käfigturm laufen
+#   - Bei jedem 10ten Schritt soll sie einen Schritt nach oben machen
+#   - Reduzieren Sie die Laufgeschwindigkeit mit: time.sleep(slower)
+#   - Bis zum Käfigturm sind es 210 Schritte
 #
 # Vorhandene Funktionen
 #
@@ -13,18 +15,19 @@
 # go_left()    : Geht einen Schritt nach links
 # go_up()      : Geht einen Schritt hoch
 # go_down()    : Geht einen Schritt runter
+# Taste q      : Abbruch des Spiels
 #
-# Hinweis: Neuer Code nur im markierten Feld eintragen
-#          Der Zytglogge Turm ist an der x,y-Position 430,180
+# Hinweis: Neuer Code nur im markierten Bereich eintragen
 #
 ####################################################
 
 #Module
 import pygame
 import time
-from stadtlauf_func import *
+from stadtlauf_bern_modul import *
 
 #Variablen
+schritte=0    #Anzahl Schritte
 d=1           #Anzahl Durchgänge
 slower=0.01   #Je höher die Zahl, umso langsamer läuft die Figur
 
@@ -35,26 +38,24 @@ while run:
 
 ##############################################
        #######################################
-       # Hier kommt Ihr Code
+       # Hier kommt Ihr Code (ab diesem Einzug)
+       #Lauf zu Käfigturm
 
-       for i in range(230):
-         time.sleep(slower)
-         x=go_right()
-         if x%10==0 and x<=210:
-            y=go_up()
-         if x>200 and x<250 and y>150 and y<170:
-            text2show='Käfigturm'
-            xt,yt=x,y
-         redrawGameWindow(text2show,xt,yt)
 
+
+
+
+
+         
+          redrawGameWindow()      #Grafik neu darstellen. Dies muss die letzte Zeile der for-Schleife sein
        #bis hier
        #######################################
 ##############################################
 
     d-=1
     go_stop()
-    run=check_key()
-    redrawGameWindow(text2show,xt,yt) 
-    
+    run=check_key()      #Prüfen ob und welche Taste gedrückt wurde
+    redrawGameWindow()   #Grafik neu darstellen
+
 #Ende Darstellung
 pygame.quit()

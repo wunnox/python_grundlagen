@@ -2,9 +2,11 @@
 ###################################################################
 #
 # Uebung:
-# Generieren Sie eine Zufallszahl zw. 100 und 1000 und schreiben Sie
-# diese in die Variable z
-# Geben Sie den Inhalt der Variable z auf dem Bildschirm aus.
+# Generieren Sie eine Zufallszahl zwischen 10 und 100 (inklusive), 
+# schreiben Sie diese in die Variable „z“
+# Addieren Sie 5 zur Variable „z“ hinzu und multiplizieren sie den Wert mit 2
+# Geben Sie nun das Resultat einmal mit einer ganzzahligen und einmal 
+# mit einer Modulo Division auf dem Bildschirm aus
 #
 ###################################################################
 
@@ -13,11 +15,11 @@
 # Modul random importieren
 import random
 
-# Zufallsgenerator initialisieren
-random.seed()
-
 # Zufallswerte und Berechnung
 z = random.randint(100, 1000)
 
+# Zufallswerte und Berechnung
+z=(z+5)*2
+
 # Ausgabe
-print("Zufallszahl:", z)
+print(f"Resultat ganzzahlig: {z//3}, modulo: {z%3}")
