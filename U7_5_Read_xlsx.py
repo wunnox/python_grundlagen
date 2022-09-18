@@ -22,7 +22,7 @@ from openpyxl import load_workbook
 # Auf Fileangaben prüfen
 l = len(sys.argv)
 if l == 1:
-    sourcefile = 'U7.5_Firewall_Log_Auszug.xlsx'
+    sourcefile = 'U7_5_Firewall_Log_Auszug.xlsx'
 else:
     sourcefile = sys.argv[1]
 

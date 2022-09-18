@@ -21,8 +21,8 @@ import os
 import random
 
 # Variabeln
-configfile = 'UB7.5_midihit.conf'
-outfile = 'UB7.5_midihit.mid'
+configfile = 'UB7_5_midihit.conf'
+outfile = 'UB7_5_midihit.mid'
 root = 2
 domi = 6
 takt = 384

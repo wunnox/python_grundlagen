@@ -53,7 +53,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 # Grundvariabeln setzen
-mydatabase = "U7.5_Firewallog.db"
+mydatabase = "U7_5_Firewallog.db"
 connection = sqlite3.connect(mydatabase)
 cursor = connection.cursor()
 target = 'None'
@@ -61,9 +61,9 @@ source = 'None'
 port = 'None'
 readlog = 0
 makexcel = 0
-exceltargetname = "U7.5_Firewall_Log_Target.xlsx"
-excelsourcename = "U7.5_Firewall_Log_Source.xlsx"
-excelportname = "U7.5_Firewall_Log_Port.xlsx"
+exceltargetname = "U7_5_Firewall_Log_Target.xlsx"
+excelsourcename = "U7_5_Firewall_Log_Source.xlsx"
+excelportname = "U7_5_Firewall_Log_Port.xlsx"
 
 ################### Keine Aenderungen mehr nötig ab hier ################
 

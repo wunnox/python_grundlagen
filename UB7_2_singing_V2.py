@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # WAV-File
-(fs, x) = read('UB7.2_singing-female.wav')
+(fs, x) = read('UB7_2_singing-female.wav')
 
 # Eingangssignal analysieren
 print "Eingangssignal"
@@ -45,7 +45,7 @@ print "Samples", y.size
 print "Dauer", y.size / float(fs)
 
 # Ausschnitt in ein neues File schreiben
-write('UB7.2_stimme_ausschnitt.wav', fs, y)
+write('UB7_2_stimme_ausschnitt.wav', fs, y)
 
 # Plot Eingangssignal
 t = np.arange(x.size) / float(fs)

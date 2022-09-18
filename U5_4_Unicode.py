@@ -13,6 +13,7 @@
 
 for i in (72, 97, 108, 108, 111):
     print(chr(i), end=' ')
+print()
 
 # Charakter ausserhalb des Standard ASCII-Ranges (>127)
 # print unichr(228)

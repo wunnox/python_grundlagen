@@ -12,6 +12,8 @@
 #
 # Purpose: Analysiert Firewall Log Daten
 #
+# Hinweis: Braucht die Module matplotlib und python-pptx
+#
 ##############################################
 
 # Module
@@ -24,7 +26,7 @@ import datetime
 # Variablen
 connection = sqlite3.connect(':memory:')
 cursor = connection.cursor()
-ExcelName = "U7.5_Firewall_Log_Analyse.xlsx"
+ExcelName = "U7_5_Firewall_Log_Analyse.xlsx"
 Titel = 'Firewall Analyse'
 now = datetime.datetime.now()
 today = now.strftime("%d.%m.%Y")
@@ -74,7 +76,7 @@ def read_excel():
 
     # xlsx-File öffnen
     wb = load_workbook(
-        filename='U7.5_Firewall_Log_Auszug.xlsx',
+        filename='U7_5_Firewall_Log_Auszug.xlsx',
         read_only=True)
     sheet1 = wb.worksheets[0]
     worksheet = wb[sheet1.title]
@@ -300,7 +302,7 @@ def create_presi(dbnamen, dbhits):
     pic = slide1.shapes.add_picture('DBHits.png', left, top, height=height)
 
     # Präsentation sichern
-    prs.save('U7.5_Firewall_Analyse_Presi.pptx')
+    prs.save('U7_5_Firewall_Analyse_Presi.pptx')
 
 # End Functions
 
