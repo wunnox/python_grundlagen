@@ -18,8 +18,8 @@ import pygame
 
 #Initialisierung
 pygame.init()
-screen = pygame.display.set_mode((1050,400))
 pygame.display.set_caption("Spaziergang durch Bern")
+screen = pygame.display.set_mode((1050,400))
 
 #Bilder
 walkRight = [pygame.image.load('Bilder/R1.png'), pygame.image.load('Bilder/R2.png'), pygame.image.load('Bilder/R3.png'), pygame.image.load('Bilder/R4.png'), pygame.image.load('Bilder/R5.png'), pygame.image.load('Bilder/R6.png'), pygame.image.load('Bilder/R7.png'), pygame.image.load('Bilder/R8.png'), pygame.image.load('Bilder/R9.png')]
@@ -76,7 +76,7 @@ def go_walk_right(gx,gy):
    left = False
    right = True
 
-   return x
+   return x,y
 
 def go_walk_left(gx,gy):
    '''Läuft nach einem vorgegebenen Plan'''
@@ -87,7 +87,7 @@ def go_walk_left(gx,gy):
    left = True
    right = False
 
-   return x
+   return x,y
 
 def go_left(steps=1):
    '''Nach links gehen'''
@@ -122,7 +122,7 @@ def go_stop():
 
    left = False
    right = False
-   walkCount = 0
+   #walkCount = 0
 
 def go_up(steps=1):
    '''Nach oben gehen'''
@@ -151,21 +151,25 @@ def check_key():
 
    keys = pygame.key.get_pressed()
    if keys[pygame.K_RIGHT]:
-      go_right(5)
+      go_right(2)
       print("Position x,y: ",x,y)
-      return True
+      #return True
    elif keys[pygame.K_LEFT]:
-      go_left(5)
+      go_left(2)
       print("Position x,y: ",x,y)
-      return True
-   elif keys[pygame.K_UP]:
-      go_up(2)
+      #return True
+
+   if keys[pygame.K_UP]:
+      go_up(1)
       print("Position x,y: ",x,y)
-      return True
+      #return True
    elif keys[pygame.K_DOWN]:
-      go_down(5)
+      go_down(1)
       print("Position x,y: ",x,y)
+      #return True
+
+   if keys[pygame.K_q]: 
+      return False
+   else: 
       return True
-   elif keys[pygame.K_q]: return False
-   else: return True
        

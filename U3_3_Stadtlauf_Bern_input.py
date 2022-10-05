@@ -58,7 +58,7 @@ while run:
 
 ##############################################
     #######################################
-    # Hier kommt Ihr Code
+    # Hier kommt Ihr Code (ab diesem Einzug)
     # Erfassen Sie einen Wert für die Variable "schritte"
 
 

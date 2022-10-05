@@ -18,8 +18,8 @@ import pygame
 
 #Initialisierung
 pygame.init()
-screen = pygame.display.set_mode((1050,400))
 pygame.display.set_caption("Spaziergang durch Bern")
+screen = pygame.display.set_mode((1050,400))
 
 #Bilder
 walkRight = [pygame.image.load('Bilder/R1.png'), pygame.image.load('Bilder/R2.png'), pygame.image.load('Bilder/R3.png'), pygame.image.load('Bilder/R4.png'), pygame.image.load('Bilder/R5.png'), pygame.image.load('Bilder/R6.png'), pygame.image.load('Bilder/R7.png'), pygame.image.load('Bilder/R8.png'), pygame.image.load('Bilder/R9.png')]
@@ -32,7 +32,34 @@ font = pygame.font.SysFont('Comic Sans MS', 20)
 clock = pygame.time.Clock()
 xt=0  #Standard Textposition x
 yt=0  #Standard Textposition y
+x = 20
+y = 155
+walkCount = 0
+
 keys = pygame.key.get_pressed()
+
+def redrawGameWindow(text2show,xt,yt,x,y,left,right):
+      '''Baut das Bild neu auf'''
+
+      global screen,walkCount
+
+      textimg = font.render(text2show, True, (255, 0, 0))
+      screen.blit(bg, (0,0))  
+      screen.blit(textimg, (xt,yt))
+      if walkCount + 1 >= 27:
+         walkCount = 0
+        
+      if left:  
+         screen.blit(walkLeft[walkCount//3], (x,y))
+         walkCount += 1                          
+      elif right:
+         screen.blit(walkRight[walkCount//3], (x,y))
+         walkCount += 1
+      else:
+         screen.blit(char, (x, y))
+         walkCount = 0
+        
+      pygame.display.update() 
 
 class Figur:
    '''Klasse zum Verwalten der Spielfigur'''
@@ -42,38 +69,12 @@ class Figur:
       self.figur=figur   #Key Addtribut
       self.x=20          #Start Position x
       self.y=150         #Start Position y
-      #self.x=700          #Start Position x
-      #self.y=120         #Start Position y
       self.max_x=1000    #Max Position x
       self.max_y=340     #Max Position y
       self.min_x=-10     #Min Position x
       self.min_y=-10     #Min Position y
       self.left = False  #Nicht Richtung links schauen
       self.right = False #Nicht Richtung rechts schauen
-      self.walkCount = 0 #Schrittzähler
-
-   def redrawGameWindow(self,text2show,xt,yt):
-      '''Baut das Bild neu auf'''
-
-      global screen
-
-      textimg = font.render(text2show, True, (255, 0, 0))
-      screen.blit(bg, (0,0))  
-      screen.blit(textimg, (xt,yt))
-      if self.walkCount + 1 >= 27:
-         self.walkCount = 0
-        
-      if self.left:  
-         screen.blit(walkLeft[self.walkCount//3], (self.x,self.y))
-         self.walkCount += 1                          
-      elif self.right:
-         screen.blit(walkRight[self.walkCount//3], (self.x,self.y))
-         self.walkCount += 1
-      else:
-         screen.blit(char, (self.x, self.y))
-         self.walkCount = 0
-        
-      pygame.display.update() 
 
    def go_walk_right(self,gx,gy):
       '''Läuft nach einem vorgegebenen Plan nach rechts'''
@@ -82,7 +83,7 @@ class Figur:
       self.left = False
       self.right = True
 
-      return self.x,self.y
+      return self.x,self.y,self.left,self.right
 
    def go_walk_left(self,gx,gy):
       '''Läuft nach einem vorgegebenen Plan nach links'''
@@ -91,7 +92,7 @@ class Figur:
       self.left = True
       self.right = False
 
-      return self.x,self.y
+      return self.x,self.y,self.left,self.right
 
    def go_left(self,steps=1):
       '''Nach links gehen'''
@@ -100,7 +101,7 @@ class Figur:
          self.x -= steps
          self.left = True
          self.right = False
-         return self.x
+         return self.x,self.left,self.right
       else:
          self.go_stop()
 
@@ -111,7 +112,7 @@ class Figur:
          self.x += steps
          self.left = False
          self.right = True
-         return self.x
+         return self.x,self.left,self.right
       else:
          self.go_stop()
 
@@ -120,7 +121,9 @@ class Figur:
 
       self.left = False
       self.right = False
-      self.walkCount = 0
+      walkCount = 0
+
+      return walkCount,self.left,self.right
 
    def go_up(self,steps=1):
       '''Nach oben gehen'''
@@ -143,27 +146,33 @@ class Figur:
    def check_key(self):
       '''Prüfen welche Taste gedrückt wurde'''
 
+      self.left=False
+      self.right=False
+
       for event in pygame.event.get():
          if event.type == pygame.QUIT:
             run = False
 
       keys = pygame.key.get_pressed()
       if keys[pygame.K_RIGHT]:
-         self.go_right(5)
+         self.go_right(1)
+         self.right=True
          print("Position x,y: ",self.x,self.y)
-         return True
       elif keys[pygame.K_LEFT]:
-         self.go_left(5)
+         self.go_left(1)
+         self.left=True
          print("Position x,y: ",self.x,self.y)
-         return True
-      elif keys[pygame.K_UP]:
-         self.go_up(2)
+
+      if keys[pygame.K_UP]:
+         self.go_up(1)
          print("Position x,y: ",self.x,self.y)
-         return True
       elif keys[pygame.K_DOWN]:
-         self.go_down(5)
+         self.go_down(1)
          print("Position x,y: ",self.x,self.y)
-         return True
-      elif keys[pygame.K_q]: return False
-      else: return True
+
+      if keys[pygame.K_q]: 
+         return self.x,self.y,self.left,self.right,False
+      else: 
+         return self.x,self.y,self.left,self.right,True
        
+

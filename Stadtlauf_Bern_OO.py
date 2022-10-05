@@ -24,6 +24,10 @@ d=1           #Anzahl Durchgänge
 slower=0.01   #Je höher die Zahl, umso langsamer läuft die Figur
 x=0
 y=0
+walkCount = 0
+left = False
+right = False
+
 
 #Figur als Objekt initialisieren
 marsi=sf.Figur('Marsi')
@@ -45,60 +49,61 @@ while run:
        for wg in wd.weg["Käfigturm"]:
           gx,gy=wg
           time.sleep(slower)  #Laufgeschwindigkeit reduzieren
-          x,y=marsi.go_walk_right(gx,gy)
+          x,y,left,right=marsi.go_walk_right(gx,gy)
           text2show,xt,yt=check_text(x,y)
-          marsi.redrawGameWindow(text2show,xt,yt)
+          sf.redrawGameWindow(text2show,xt,yt,x,y,left,right)
 
        for wg in wd.weg["Zytglogge"]:
           gx,gy=wg
           time.sleep(slower)  #Laufgeschwindigkeit reduzieren
-          x,y=marsi.go_walk_right(gx,gy)
+          x,y,left,right=marsi.go_walk_right(gx,gy)
           text2show,xt,yt=check_text(x,y)
-          marsi.redrawGameWindow(text2show,xt,yt)
+          sf.redrawGameWindow(text2show,xt,yt,x,y,left,right)
 
        for wg in wd.weg["Rathaus"]:
           gx,gy=wg
           time.sleep(slower)  #Laufgeschwindigkeit reduzieren
-          x,y=marsi.go_walk_right(gx,gy)
+          x,y,left,right=marsi.go_walk_right(gx,gy)
           text2show,xt,yt=check_text(x,y)
-          marsi.redrawGameWindow(text2show,xt,yt)
+          sf.redrawGameWindow(text2show,xt,yt,x,y,left,right)
        for wg in wd.weg["Nydeck Kirche"]:
           gx,gy=wg
           time.sleep(slower)  #Laufgeschwindigkeit reduzieren
-          x,y=marsi.go_walk_right(gx,gy)
+          x,y,left,right=marsi.go_walk_right(gx,gy)
           text2show,xt,yt=check_text(x,y)
-          marsi.redrawGameWindow(text2show,xt,yt)
+          sf.redrawGameWindow(text2show,xt,yt,x,y,left,right)
        
        for wg in wd.weg["Münster"]:
           gx,gy=wg
           time.sleep(slower)  #Laufgeschwindigkeit reduzieren
-          x,y=marsi.go_walk_left(gx,gy)
+          x,y,left,right=marsi.go_walk_left(gx,gy)
           text2show,xt,yt=check_text(x,y)
-          marsi.redrawGameWindow(text2show,xt,yt)
+          sf.redrawGameWindow(text2show,xt,yt,x,y,left,right)
 
        for wg in wd.weg["Bundeshaus"]:
           gx,gy=wg
           time.sleep(slower)  #Laufgeschwindigkeit reduzieren
-          x,y=marsi.go_walk_left(gx,gy)
+          x,y,left,right=marsi.go_walk_left(gx,gy)
           text2show,xt,yt=check_text(x,y)
-          marsi.redrawGameWindow(text2show,xt,yt)
+          sf.redrawGameWindow(text2show,xt,yt,x,y,left,right)
        
        for wg in wd.weg["Heiliggeist Kirche links"]:
           gx,gy=wg
           time.sleep(slower)  #Laufgeschwindigkeit reduzieren
-          x,y=marsi.go_walk_left(gx,gy)
+          x,y,left,right=marsi.go_walk_left(gx,gy)
           text2show,xt,yt=check_text(x,y)
-          marsi.redrawGameWindow(text2show,xt,yt)
+          sf.redrawGameWindow(text2show,xt,yt,x,y,left,right)
        
        for wg in wd.weg["Heiliggeist Kirche rechts"]:
           gx,gy=wg
           time.sleep(slower)  #Laufgeschwindigkeit reduzieren
-          x,y=marsi.go_walk_right(gx,gy)
+          x,y,left,right=marsi.go_walk_right(gx,gy)
           text2show,xt,yt=check_text(x,y)
-          marsi.redrawGameWindow(text2show,xt,yt)
+          sf.redrawGameWindow(text2show,xt,yt,x,y,left,right)
        
     d-=1
 
-    marsi.go_stop()
-    run=marsi.check_key()
-    marsi.redrawGameWindow(text2show,xt,yt)
+    walkCount,left,right=marsi.go_stop()
+    x,y,left,right,run=marsi.check_key()
+    sf.redrawGameWindow(text2show,xt,yt,x,y,left,right)
+
