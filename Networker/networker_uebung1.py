@@ -36,7 +36,7 @@ def get_name(adr):
    return name
 
 #Variabeln
-adressen=['192.168.1.50','192.168.1.128','192.168.1.150','46.232.181.237']
+adressen=['192.168.1.252','192.168.1.128','192.168.1.150','46.232.181.237']
 
 #Main Script
 for adr in adressen:

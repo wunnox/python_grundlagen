@@ -21,16 +21,18 @@ import logging
 logging.basicConfig(filename='netmiko.log', level=logging.DEBUG)
 logger = logging.getLogger("netmiko")
 
-# Verbindung herstellen
-#network_device={"host":"192.168.1.252", "username":"peter", 'use_keys':True, 'key_file':'/Users/peter/.ssh/id_rsa.pub', "device_type":"cisco_ios"}
-network_device={"host":"192.168.1.252", "username":"peter", "password":"Cisco123", "device_type":"cisco_ios",'secret':"Cisco123"}
+# Verbindung herstellen mit key-File
+#network_device={"host":"192.168.1.252", "username":"peter", 'use_keys':True, 'key_file':'/Users/peter/.ssh/id_rsa.pub', "device_type":"cisco_ios","secret":"Cisco123"}
+
+# Verbindung herstellen mit Passwort
+network_device={"host":"192.168.1.252", "username":"python", "password":"python12", "device_type":"cisco_ios",'secret':"Cisco123"}
 
 connect=ConnectHandler(**network_device)
 connect.enable()
 
 #Interface Description setzen
 for i in ("2","3","4","5","6"):
-   cmd=["int Gi1/0/"+i,"description Test Port "+i]
+   cmd=["int Gi1/0/"+i,"description PC Test Port "+i]
    print(connect.send_config_set(cmd))
 
 #Änderungen speichern

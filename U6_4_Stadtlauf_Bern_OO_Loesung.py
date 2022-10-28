@@ -2,10 +2,10 @@
 ####################################################
 #
 # Uebung:
-# Der Berner Stadtlauf wurde auf OO umgeschrieben
+# Der Berner Stadtlauf wurde Objekt Orientiert programmiert
 # Das heisst somit folgendes:
-#   - Es gibt eine Klasse Figur, in welcher die Figuren als Objekt erfasst werden können
-#   - Alle vorhandenen Funktionen wurden als Methoden in die Klasse Figur übernommen
+#   - Es gibt eine Klasse Figur (aufrufen mit sf.Figur), in welcher die Figuren, welche durch die Stadt laufen, als Objekt erfasst werden können
+#   - Alle vorhandenen Funktionen wurden als Methoden in die Klasse Figur übernommen. Beachten Sie die Hinweise bei den Eingabeblöcken.
 #
 # Erfassen Sie somit ein neues Objekt mit einen Namen Ihrer Wahl
 # Lassen Sie Ihr Objekt den vorgegebenen Weg zum Zytglogge ablaufen
@@ -43,7 +43,9 @@ y=0
 ##############################################
 #######################################
 # Hier kommt Ihr neuer Code
-# Figur als Objekt initialisieren
+# Figur als Objekt initialisieren mit dem Klassenaufruf <objekt>=sf.Figur(<Name>)
+# sf.Figur deshalb, weil die Klasse im Modul stadtlauf_bern_oo_modul erfasst wurde, welches "as sf" importiert ist
+# Die Bezeichnungen für das Objekt und den Namen können frei gewählt werden
 
 marsi=sf.Figur('Marsi')
 
@@ -63,6 +65,7 @@ while run:
          #######################################
          # Hier kommt Ihr neuer Code
          # Figur den vorgegebenen Weg laufen lassen
+         # Hierzu muss die Methode go_walk_right(gx,gy) verwendet werden
 
          x,y,left,right=marsi.go_walk_right(gx,gy)
 
@@ -77,7 +80,8 @@ while run:
 ##############################################
     #######################################
     # Hier kommt Ihr neuer Code
-    # Figur den vorgegebenen Weg laufen lassen
+    # Hierzu die Methode check_key() verwenden
+   
 
     x,y,left,right,run=marsi.check_key()  #Prüfen ob und welche Taste gedrückt wurde
 

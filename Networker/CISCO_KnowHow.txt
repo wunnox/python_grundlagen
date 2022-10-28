@@ -1,0 +1,20 @@
+CISCO KnowHow
+=============
+
+# Login
+Login OSX: ssh -oKexAlgorithms=+diffie-hellman-group-exchange-sha1 python@192.168.1.252
+Login Linux: ssh python@192.168.1.252
+
+# Berechtigungen:
+Anzeigen: show privilege
+Create user: username <name> privilege [1-15] secret <Passwd>
+
+# Zugriffe
+Belege Lines anzeigen: show line
+Lines löschen: clear line vty [1-15]
+ssh-Zugriff: line vty [1-15] / transport input ssh / exit
+
+# Logging
+Auf Terminal: term monitor / term no monitor
+Auf Console: logging console / no logging console
+

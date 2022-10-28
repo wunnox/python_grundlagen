@@ -21,9 +21,12 @@ import logging
 logging.basicConfig(filename='netmiko.log', level=logging.DEBUG)
 logger = logging.getLogger("netmiko")
 
-# Verbindung herstellen
-network_device={"host":"192.168.1.146", "username":"peter", 'use_keys':True, 'key_file':'/Users/peter/.ssh/id_rsa.pub', "device_type":"cisco_ios"}
-#network_device={"host":"192.168.1.146", "username":"peter", "password":"Cisco123", "device_type":"cisco_ios",'timeout':5}
+# Verbindung herstellen mit key-File
+#network_device={"host":"192.168.1.252", "username":"peter", 'use_keys':True, 'key_file':'/Users/peter/.ssh/id_rsa.pub', "device_type":"cisco_ios","secret":"Cisco123"}
+
+# Verbindung herstellen mit Passwort
+network_device={"host":"192.168.1.252", "username":"python", "password":"python12", "device_type":"cisco_ios",'secret':"Cisco123"}
+
 connect=ConnectHandler(**network_device)
 
 connect.enable()
@@ -33,7 +36,7 @@ connect.config_mode()
 for i in ("2","3","4","5","6"):
    cmd="interface "+"gi"+i
    connect.send_command(cmd,expect_string="switchaafe60.*")
-   cmd=f"description \"Test Port {i}\""
+   cmd=f"description \"PC Test Port {i}\""
    connect.send_command(cmd,expect_string="switchaafe60.*")
 
 #Änderungen speichern
