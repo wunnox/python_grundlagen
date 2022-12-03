@@ -21,9 +21,9 @@
 #    return umfang, fläche, volumen
 #####################################
 
-import U56_modul_Zylinder as zyl
+from U56_modul_Zylinder import zylinder
 
-u, f, v = zyl.zylinder(5,12)
+u, f, v = zylinder(5,12)
 
 print("Angaben Zylinder")
 print("Umfang:", u)

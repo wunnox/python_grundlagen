@@ -15,14 +15,30 @@
 
 #### Lösung: ####
 
-a = ('Peter', 'Hans', 'Fred', 'Hans', 'Ursula', 'Robert', 'Ursula', 'Hans')
-d = {}
+tup = ('Peter', 'Hans', 'Fred', 'Hans', 'Ursula', 'Robert', 'Ursula', 'Hans')
+dic = {}
 
-for n in a:
-    if n in d.keys():
-        d[n] += 1
+#Version 1
+for name in tup:
+    if name in dic.keys():
+        dic[name] += 1
     else:
-        d[n] = 1
+        dic[name] = 1
 
-for n, a in d.items():
-    print(n, a)
+'''
+#Version 2
+for name in tup:
+    if name not in dic.keys():
+        dic[name]=tup.count(name)
+
+#Version 3
+s=set(tup)
+for name in s:
+    dic[name]=tup.count(name)
+'''
+
+#Ausgabe
+for name, wert in dic.items():
+    print(name, wert)
+
+

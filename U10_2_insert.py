@@ -21,7 +21,7 @@ cursor.execute(
 
 # Datensatz erzeugen
 cursor.execute(
-    "INSERT INTO personen VALUES ('Schmitz','Peter', 81343, 3750, '12.04.1958')")
+    "INSERT INTO personen VALUES ('Schmitz','Peter', 8134, 3750, '12.04.1958')")
 cursor.execute(
     "INSERT INTO personen VALUES ('Müller','Hans', 6143, 3650, '22.08.1960')")
 cursor.execute(

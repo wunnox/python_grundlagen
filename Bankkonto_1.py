@@ -14,8 +14,6 @@
 #
 ##############################################
 
-import time
-
 #Klassen
 class Konto:
   '''Klasse Konto zur Verwaltung von Bankkonten'''

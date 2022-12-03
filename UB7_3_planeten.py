@@ -19,50 +19,28 @@
 
 import ephem as ep
 
-# Standort aus Liste wählen
-zurich = ep.city("Zurich")
-zurich.date = ep.now()
-
-# Standort selber definieren
-bern = ep.Observer()
-bern.lon = ep.degrees("7.4393795")
-bern.lat = ep.degrees("46.9472123")
-bern.elevation = 550
-bern.date = ep.now()
-bern.pressure = 0  # Let's neglect atmospheric refraction
+gatech = ep.Observer()
+gatech.lon, gatech.lat = '7.4393795', '46.9472123'
 
 # Sonne und Mond berechnen
-sunbe = ep.Sun(bern)
-moonbe = ep.Moon(bern)
-sunzh = ep.Sun(zurich)
-moonzh = ep.Moon(zurich)
+sunbe,moonbe = ep.Sun(), ep.Moon()
+sunbe.compute(gatech)
+moonbe.compute(gatech)
 
 # Planete berechnen
-marsbe = ep.Mars(bern)
-venusbe = ep.Venus(bern)
-marszh = ep.Mars(zurich)
-venuszh = ep.Venus(zurich)
+marsbe,venusbe = ep.Mars(), ep.Venus()
+marsbe.compute(gatech)
+venusbe.compute(gatech)
 
 # Positionen ausgeben
-print("Bern  : Azimut,     Höhe")
-print("Sonne :", sunbe.az, sunbe.alt)
-print("Mond  :", moonbe.az, moonbe.alt)
-print("Mars  :", marsbe.az, marsbe.alt)
-print("Venus :", venusbe.az, venusbe.alt)
+print("Bern  : Azimut         Höhe")
+print(f"Sonne : {sunbe.az}   {sunbe.alt}")
+print(f"Mond  : {moonbe.az}   {moonbe.alt}")
+print(f"Mars  : {marsbe.az}   {marsbe.alt}")
+print(f"Venus : {venusbe.az}   {venusbe.alt}")
 print()
-print("Sonnenaufgang  :", ep.localtime(sunbe.rise_time))
-print("Sonnenuntergang:", ep.localtime(sunbe.set_time))
-print("Mondaufgang    :", ep.localtime(moonbe.rise_time))
-print("Monduntergang  :", ep.localtime(moonbe.set_time))
-print()
-print("Zürich: Azimut,     Höhe")
-print("Sonne :", sunzh.az, sunzh.alt)
-print("Mond  :", moonzh.az, moonzh.alt)
-print("Mars  :", marszh.az, marszh.alt)
-print("Venus :", venuszh.az, venuszh.alt)
-print()
-print("Sonnenaufgang  :", ep.localtime(sunzh.rise_time))
-print("Sonnenuntergang:", ep.localtime(sunzh.set_time))
-print("Mondaufgang    :", ep.localtime(moonzh.rise_time))
-print("Monduntergang  :", ep.localtime(moonzh.set_time))
+print("Sonnenaufgang   (UTC):", gatech.next_rising(sunbe))
+print("Sonnenuntergang (UTC):", gatech.next_setting(sunbe))
+print("Mondaufgang     (UTC):", gatech.next_rising(moonbe))
+print("Monduntergang   (UTC):", gatech.next_setting(moonbe))
 print()
