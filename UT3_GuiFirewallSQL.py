@@ -17,7 +17,7 @@ import tkinter
 import sqlite3
 
 # Variabeln
-datenbank = 'U7.5_Firewallog.db'
+datenbank = 'U7_5_Firewallog.db'
 tabellenname = 'firelog'
 titel = "Datenbank Firewall"
 
