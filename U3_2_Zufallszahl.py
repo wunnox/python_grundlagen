@@ -2,7 +2,7 @@
 ###################################################################
 #
 # Uebung:
-# Generieren Sie eine Zufallszahl zwischen 10 und 100 (inklusive), 
+# Generieren Sie eine Zufallszahl zwischen 100 und 1000 (inklusive), 
 # schreiben Sie diese in die Variable „z“
 # Addieren Sie 5 zur Variable „z“ hinzu und multiplizieren sie den Wert mit 2
 # Geben Sie nun das Resultat einmal mit einer ganzzahligen und einmal 

@@ -5,7 +5,7 @@
 # Lesen Sie mit der Funktion raw_input() eine Zahl in eine Variable.
 # Addieren Sie den Wert 5 und geben Sie die Summe aus.
 # Stellen Sie sicher, dass eine falsche Eingabe kein Programmabbruch
-# bewirkt, sonder eine entsprechende Meldung ausgegeben wird.
+# bewirkt, sondern eine entsprechende Meldung ausgegeben wird.
 #
 ###################################################################
 
