@@ -3,7 +3,7 @@
 #
 # Uebung:
 # Erstellen Sie ein Programm, welches Ihr Alter
-# (oder sonst eines) berechnet.
+# (oder sonst eines) berechnet mit time.
 #
 ####################################################
 

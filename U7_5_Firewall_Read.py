@@ -5,10 +5,11 @@
 #
 # Author: Peter Christen
 #
-# Version: 1.1
+# Version: 1.2
 #
 # Date: 05.11.2015 V1.0
 #       27.09.2021 V1.1 workbook-Aufruf angepasst
+#       10.10.2023 V1.2 Script vereinfacht
 #
 # Purpose: Liest ein xlsx-File ein und schreibt Daten auf Bildschirm
 #
@@ -26,23 +27,14 @@ else:
 
 # xlsx-File öffnen
 wb = load_workbook(filename=sourcefile, read_only=True)
-sheet1 = wb.worksheets[0]
-worksheet = wb[sheet1.title]
+worksheet = wb.worksheets[0]
 
 # xlsx-File einlesen
 r = 0
-w = []
 for row in worksheet.iter_rows():
     r += 1
-    c = 0
     for cell in row:
-        c += 1
-        w.append(cell.value)
+        print(cell.value, end='\t')
+    print()
 
-    for i in range(len(w)):
-        print(w[i], end=' ')
-
-    del w[:]
-    print("")
-
-print("\n", r, "Zeilen eingelesen")
+print(f"\n{r} Zeilen eingelesen")

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##############################################
 #
-# Name: UB7_5_midihit.py
+# Name: UB7_Beispiel_midihit.py
 #
 # Author: Peter Christen / Digicomp
 #
@@ -21,8 +21,8 @@ import os
 import random
 
 # Variabeln
-configfile = 'UB7_5_midihit.conf'
-outfile = 'UB7_5_midihit.mid'
+configfile = 'UB7_Beispiel_midihit.conf'
+outfile = 'UB7_Beispiel_midihit.mid'
 root = 2
 domi = 6
 takt = 384

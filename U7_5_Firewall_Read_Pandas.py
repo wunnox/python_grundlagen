@@ -32,4 +32,4 @@ print('#########################################################################
 for i in data.index:
    print(data['Source IP'][i],data['Destination IP'][i], data['Port'][i], data['Protocol'][i], data['Count'][i])
 
-print("\n", i, "Zeilen eingelesen")
+print(f"\n{i} Zeilen eingelesen")

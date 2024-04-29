@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 ##############################################
 #
-# Name: UB7_4_distanzen.py
+# Name: UB7_Beispiel_distanzen.py
 #
 # Author: Peter Christen
 #

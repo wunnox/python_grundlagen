@@ -1,9 +1,13 @@
 #!/usr/bin/python3
 ####################################################
 #
-# Datumsberechnungen mit Modul datetime
+# Uebung:
+# Erstellen Sie ein Programm, welches Ihr Alter
+# (oder sonst eines) berechnet mit datetime.
 #
 ####################################################
+
+#### Lösung: ####
 import datetime
 
 heute = datetime.datetime.now()

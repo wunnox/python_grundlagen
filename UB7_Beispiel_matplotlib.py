@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 ##############################################
 #
-# Name: UB7_1_matplotlib.py
+# Name: UB7_Beispiel_matplotlib.py
 #
 # Author: Peter Christen / Digicomp
 #

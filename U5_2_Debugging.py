@@ -8,7 +8,7 @@
 #
 # # Eingabe einer Rechnung
 # x = input("Geben Sie eine Rechnung ein (Bsp. 10+20). Das Resultat muss zwischen 1 - 50 liegen: ")
-# a=eval(str(x))
+# a=eval(x)
 #
 # #Auswertung
 # if a>0 or a<50:
@@ -25,7 +25,7 @@ import pdb
 x = input(
     "Geben Sie eine Rechnung ein (Bsp. 10+20). Das Resultat muss zw. 1 - 50 liegen: ")
 
-a = eval(str(x))
+a = eval(x)
 # pdb.set_trace()
 
 # Auswertung

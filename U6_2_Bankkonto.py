@@ -47,7 +47,7 @@ class Transaktionen(Konto):
   '''Subklasse Transaktion zum Ein- und Auszahlen'''
 
   def __init__(self,ktnr):
-      Konto.__init__(self,ktnr)
+      super().__init__(ktnr)
 
   def einzahlen(self,betrag):
       '''Geld einzahlen'''

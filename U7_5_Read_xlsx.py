@@ -14,9 +14,7 @@
 #
 ##############################################
 
-import string
 import sys
-import os
 from openpyxl import load_workbook
 
 # Auf Fileangaben prüfen
@@ -28,23 +26,15 @@ else:
 
 # xlsx-File öffnen
 wb = load_workbook(filename=sourcefile, read_only=True)
-sheet1 = wb.worksheets[0]
-worksheet = wb[sheet1.title]
+worksheet = wb.worksheets[0]
 
 # xlsx-File einlesen
 r = 0
-w = []
 for row in worksheet.iter_rows():
-    r += 1
-    c = 0
+    r+=1
     for cell in row:
-        c += 1
-        w.append(cell.value)
+        print(cell.value, end="\t")
+    print()
 
-    for i in range(len(w)):
-        print(w[i], end=' ')
-
-    del w[:]
-    print("")
-
-print("\n", r, "Zeilen eingelesen")
+print()
+print(r, "Zeilen eingelesen")

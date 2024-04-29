@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 ##############################################
 #
-# Name: UB7_2_stimme.py
+# Name: UB7_Beispiel_scipy.py
 #
 # Author: Peter Christen /Digicomp
 #
@@ -9,7 +9,7 @@
 #
 # Date: 12.01.2016
 #
-# Purpose: Errechnet einen ein Diagramm aus einem sund mit numpy
+# Purpose: Liest die wav-Datei UB7_Beispiel_singing-female.wav ein
 #          und gibt diesen mit matplotlib aus.
 #
 ##############################################
@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # WAV-File
-(fs, x) = read('UB7_2_singing-female.wav')
+(fs, x) = read('UB7_Beispiel_singing-female.wav')
 
 # Eingangssignal analysieren
 print("Eingangssignal")
@@ -45,7 +45,7 @@ print("Samples", y.size)
 print("Dauer", y.size / float(fs))
 
 # Ausschnitt in ein neues File schreiben
-write('UB7_2_stimme_ausschnitt.wav', fs, y)
+write('UB7_Beispiel_singing-female_ausschnitt.wav', fs, y)
 
 # Plot Eingangssignal
 t = np.arange(x.size) / float(fs)

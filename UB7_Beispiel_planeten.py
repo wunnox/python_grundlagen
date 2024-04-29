@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 ##############################################
 #
-# Name: UB7_3_planeten.py
+# Name: UB7_Beispiel_planeten.py
 #
 # Author: Peter Christen / Digicomp
 #

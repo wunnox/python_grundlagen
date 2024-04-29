@@ -8,22 +8,21 @@
 # Version: 1.0
 # 
 # Date: 22.05.2020
-#       05.05.2022 V1.1 Zeitanpassung
 #
-# Purpose: Kontoverwaltung
-#          Besondere Methoden
+# Purpose: Kontoverwaltung 
+#          Vererbung
+#          Einzahlen 
 #
 ##############################################
 
-import datetime
+import datetime, time
 
 #Klassen
 class Konto:
-  '''Initialer Kontostand erfassen'''
+  '''Klasse Konto zur Verwaltung von Bankkonten'''
 
   #Konstruktor Methode
   def __init__(self,ktnr):
-      #Attribute
       self.kontonummer=ktnr
 
   #Weitere Methode
@@ -45,19 +44,28 @@ class Konto:
       print ("per Stichtag:", self.aenderung_kontostand)
       print ()
 
-  #Besondere Methode
-  def __str__(self):
-      return "Kurzangaben:\nKontonummer: "+str(self.kontonummer)+"\nKontostand: "+"{:.2f}".format(self.kontostand)
+class Transaktionen(Konto):
+  '''Subklasse Transaktion zum Ein- und Auszahlen'''
 
-  def __repr__(self):
-      return "Objekt "+str(self.kontonummer)+" der Klasse Konto"
+  def __init__(self,ktnr):
+      super().__init__(ktnr)
+
+  def einzahlen(self,betrag):
+      '''Geld einzahlen'''
+
+      now = datetime.datetime.now()
+      self.kontostand+=betrag
+      self.aenderung_kontostand=now.strftime("%d.%m.%Y %H:%M:%S")
 
 #Objekt/Daten erfassen
-konto1=Konto("12345-1")
+konto1=Transaktionen("12345-1")
 konto1.kontostand_erfassen(200)
 
 #Daten ausgeben
-print (konto1)
-print ()
-print (repr(konto1))
+konto1.daten_ausgeben()
 
+time.sleep(2)
+
+#Geld einbezahlen
+konto1.einzahlen(1000)
+konto1.daten_ausgeben()
