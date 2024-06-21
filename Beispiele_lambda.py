@@ -20,7 +20,8 @@ kreisfläche = lambda r: r**2*3.14
 print (kreisfläche(3))
 
 # Lambda mit map-Funktion
-f = list(map(lambda r: (r**2*3.14), [3, 5, 12]))
+liste=[3, 5, 12]
+f = list(map(lambda r: (r**2*3.14), liste))
 print(f)
 
 # Lambda mit filter-Funktion

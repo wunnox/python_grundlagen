@@ -30,5 +30,6 @@ with open("Datei.json", 'w') as d:
 data = json.load(open("Datei.json"))
 
 # Nur Artikelname ausgeben
+print("Artikel")
 print(data["Artikel"])
 

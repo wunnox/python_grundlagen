@@ -2,22 +2,24 @@
 ####################################################
 #
 # Uebung:
-# Erstellen Sie ein Programm, welches die folgenden
-# Unicode Werte als Text liefert.
+# Erstellen Sie ein Programm, welches die folgenden Unicode Werte als Text liefert
 #
-# 72,97,108,108,111
+# 272, 111, 114, 273, 101, 32, 272, 111, 107, 111, 118, 105, 263
+#
 #
 ####################################################
 
 #### Lösung: ####
 
-for i in (72, 97, 108, 108, 111):
-    print(chr(i), end=' ')
+# Variante 1
+name=''
+for i in (272, 111, 114, 273, 101, 32, 272, 111, 107, 111, 118, 105, 263):
+   name+=chr(i)
+print(name)
+
+# Variante 2
+for i in (272, 111, 114, 273, 101, 32, 272, 111, 107, 111, 118, 105, 263):
+   print(chr(i), end='')
 print()
 
-# Charakter ausserhalb des Standard ASCII-Ranges (>127)
-# print unichr(228)
 
-# So erstellen Sie die Unicode Werte
-# for i in ('H','a','l','l','o'):
-#   print ord(i),

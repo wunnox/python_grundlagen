@@ -84,9 +84,10 @@ class Twint(Transaktionen):
   def uebertrag(self, zielkonto, betrag):
       '''Geld übertragen'''
 
-      self.kontostand-=betrag
+      self.auszahlen(betrag)
       zielkonto.einzahlen(betrag)
       self.aenderung_kontostand=self.aktueller_zeitstempel()
+      zielkonto.aenderung_kontostand=self.aktueller_zeitstempel()
 
 
 #Objekt/Daten erfassen
