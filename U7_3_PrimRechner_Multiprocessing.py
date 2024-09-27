@@ -15,6 +15,7 @@
 ##############################################
 
 from multiprocessing import Process, Pipe
+import time
 
 # Variabeln
 pc = []  # Liste für Primzahlenzähler
@@ -36,6 +37,7 @@ def primrechner(ps, pe, pia):
     pia.close()
 
 if __name__ == '__main__':
+    start = time.perf_counter()
     # Prozesse starten
     px = Process(target=primrechner, args=(1, 17000, pia))
     px.start()
@@ -49,4 +51,6 @@ if __name__ == '__main__':
     anzahlprimzahlen = anzahlprimzahlen + pib.recv()
     anzahlprimzahlen = anzahlprimzahlen + pib.recv()
     print("Es wurden", anzahlprimzahlen, "Primzahlen gefunden")
+    end = time.perf_counter()
+    print("Performance:", end - start, "Sec")
 

@@ -5,26 +5,23 @@
 #
 # Author: Peter Christen
 #
-# Version: 1.2
+# Version: 1.3
 #
 # Date: 20.11.2015
 #       22.01.2017 V1.1 Argparse ergänzt
 #       27.09.2021 V1.2 workbook-Aufruf angepasst
+#       27.09.2024 V1.3 Vollständige Überarbeitung
 #
 # Purpose: Liest xlsx-Dateien mit Firewall Logs ein
 #
 ##############################################
 
-import string
-import sys
-import os
 import sqlite3
-import socket
-import datetime
 import openpyxl
 import argparse
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font, Color, colors
+from icecream import ic
 
 # Argparse Eingabe prüfen
 parser = argparse.ArgumentParser(
@@ -56,59 +53,16 @@ args = parser.parse_args()
 mydatabase = "U7_5_Firewallog.db"
 connection = sqlite3.connect(mydatabase)
 cursor = connection.cursor()
-target = 'None'
-source = 'None'
-port = 'None'
-readlog = 0
-makexcel = 0
 exceltargetname = "U7_5_Firewall_Log_Target.xlsx"
 excelsourcename = "U7_5_Firewall_Log_Source.xlsx"
 excelportname = "U7_5_Firewall_Log_Port.xlsx"
 
 ################### Keine Aenderungen mehr nötig ab hier ################
 
-# Eingaben auswerten
-if args.r:
-    readlog = 1
-    sourcefile = args.r[0]
-elif args.t:
-    makexcel = 1
-    target = args.t[0]
-    ExcelName = exceltargetname
-    Titel = "Firewall Verbindungen auf Target IP " + target
-elif args.s:
-    makexcel = 1
-    source = args.s[0]
-    ExcelName = excelsourcename
-    Titel = "Firewall Verbindungen von Source IP " + source
-elif args.p:
-    makexcel = 1
-    port = args.p[0]
-    ExcelName = excelportname
-    Titel = "Firewall Verbindungen auf Port " + port
-elif args.c:
-    cursor.execute(
-        'create table if not exists firelog ( sourceip varchar(20), targetip varchar(20), port varchar(20), protokoll varchar(10), count int)')
-    cursor.execute(
-        'CREATE INDEX if not exists firelog_ind on firelog (sourceip, targetip, port)')
-    print("Database created")
-    sys.exit(0)
-
 # Functions
-
-
-def colsize(col):
-    if col > 90:
-        col = col - 26
-        b = chr(col)
-        col = 'A' + b
-    else:
-        col = str(chr(col))
-    return col
-
-
-# Firewall log einlesen
-if readlog == 1:
+def firewall_log_einlesen(sourcefile):
+    ''' Excel mit Firewall log einlesen '''
+    
     # xlsx-File öffnen
     wb = load_workbook(filename=sourcefile, read_only=True)
     sheet1 = wb.worksheets[0]
@@ -125,8 +79,7 @@ if readlog == 1:
             w.append(cell.value)
 
         po = str(w[3]).split(".")
-        cursor.execute("replace into firelog values(?,?,?,?,?)",
-                       (w[0], w[1], w[2], po[0], w[4]))
+        cursor.execute("replace into firelog values(?,?,?,?,?)",(w[0], w[1], w[2], po[0], w[4]))
         # print w[0],w[1],w[2],po[0],w[4],w[5]
         del w[:]
 
@@ -134,13 +87,8 @@ if readlog == 1:
     connection.commit()
     print(str(r) + " Zeilen eingelesen")
 
-if makexcel == 1:
-    # Erstelle Excel aus Firewall DB
-
-    now = datetime.datetime.now()
-    datum = now.strftime("%d.%m.%Y %H:%M")
-
-    # Excel erstellen
+def excel_erstellen(typ,muster,ExcelName,Titel):
+    ''' Erstelle Excel aus Firewall DB '''
 
     wb = openpyxl.Workbook()
     ws1 = wb.worksheets[0]
@@ -177,6 +125,7 @@ if makexcel == 1:
     ws1.column_dimensions["C"].width = 8.0
     ws1.column_dimensions["D"].width = 7.0
 
+    # Header Zeile schreiben
     ws1['A1'].font = fontT
     ws1['A1'].value = Titel
     ws1['A3'].font = fontb
@@ -189,32 +138,43 @@ if makexcel == 1:
     ws1['D3'].value = "Protokoll"
 
     # Daten aus der Datenbanken einfuegen
-    coln = 65
     z = 4
 
-    if target != 'None':
-        cursor.execute("select * from firelog where targetip=?", (target,))
-    if source != 'None':
-        cursor.execute("select * from firelog where sourceip=?", (source,))
-    if port != 'None':
-        cursor.execute("select * from firelog where port=?", (port,))
+    if typ == 'target':
+        cursor.execute("select * from firelog where targetip=?", (muster,))
+    elif typ == 'source':
+        cursor.execute("select * from firelog where sourceip=?", (muster,))
+    elif typ == 'port':
+        cursor.execute("select * from firelog where port=?", (muster,))
 
     for row in cursor:
-        col = colsize(coln)
-        ce = col + str(z)
-        ws1[ce].value = row[0]
-        col = colsize(coln + 1)
-        ce = col + str(z)
-        ws1[ce].value = row[1]
-        col = colsize(coln + 2)
-        ce = col + str(z)
-        ws1[ce].value = row[2]
-        col = colsize(coln + 3)
-        ce = col + str(z)
-        ws1[ce].value = row[3]
+        cell=ws1.cell(row=z, column=1,value=row[0])
+        cell=ws1.cell(row=z, column=2,value=row[1])
+        cell=ws1.cell(row=z, column=3,value=row[2])
+        cell=ws1.cell(row=z, column=4,value=row[3])
+
         z += 1
 
     wb.save(filename=ExcelName)
+
+# Eingaben auswerten
+if args.r:
+    firewall_log_einlesen(args.r[0])
+elif args.t:
+    Titel = "Firewall Verbindungen auf Target IP " + args.t[0]
+    excel_erstellen('target',args.t[0],exceltargetname,Titel)
+elif args.s:
+    Titel = "Firewall Verbindungen von Source IP " + args.s[0]
+    excel_erstellen('source',args.s[0],excelsourcename,Titel)
+elif args.p:
+    Titel = "Firewall Verbindungen auf Port " + args.p[0]
+    excel_erstellen('port',args.p[0],excelportname,Titel)
+elif args.c:
+    cursor.execute(
+        'create table if not exists firelog ( sourceip varchar(20), targetip varchar(20), port varchar(20), protokoll varchar(10), count int)')
+    cursor.execute(
+        'CREATE INDEX if not exists firelog_ind on firelog (sourceip, targetip, port)')
+    print("Database created")
 
 connection.commit()
 cursor.close()

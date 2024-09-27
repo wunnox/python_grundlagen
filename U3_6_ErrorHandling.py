@@ -20,5 +20,5 @@ try:
     print(z + 5)
 
 # Fehler bei Umwandlung
-except Exception:
-    print(z, "ist keine Zahl")
+except Exception as e:
+    print(z, "ist keine Zahl - Fehlermeldung:", e)

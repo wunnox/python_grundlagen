@@ -5,10 +5,11 @@
 #
 # Author: Peter Christen
 #
-# Version: 1.1
+# Version: 1.2
 #
 # Date: 20.11.2015 V1.0
 #       25.03.2024 V1.1 Übung überarbeitet
+#       27.09.2024 V1.2 Kleinere Anpassungen
 #
 # Purpose: Beispiel eines Object Oriented Python Scripts mit Operatoren
 #
@@ -30,13 +31,13 @@ class Auto:
     def __eq__(self, other):
         return self.speed == other.speed
 
-auto1=input("Fahrzeugname 1: ")
+marke1=input("Fahrzeugname 1: ")
 speed1=input("Speed 1: ")
-auto2=input("Fahrzeugname 2: ")
+marke2=input("Fahrzeugname 2: ")
 speed2=input("Speed 2: ")
 
-objekt1 = Auto(auto1,speed1)
-objekt2 = Auto(auto2,speed2)
+objekt1 = Auto(marke1,speed1)
+objekt2 = Auto(marke2,speed2)
 
 print()
 if objekt1 == objekt2:

@@ -40,7 +40,7 @@ class Konto:
       self.vorname=vn
       self.nachname=nn
       self.wohnort=ort
-      self.aenderung_personalien=now.strftime("%d.%m.%Y")
+      self.aenderung_personalien=now.strftime("%d.%m.%Y %H:%M:%S")
 
   def daten_ausgeben(self):
       '''Kunden- und Kontodaten ausgeben'''

@@ -31,6 +31,7 @@ def primrechner(tc, ps, pe):
     return
 
 # Start Threads
+start = time.perf_counter()
 t = threading.Thread(target=primrechner, args=(1, 1, 17000))
 t.start()
 t = threading.Thread(target=primrechner, args=(2, 17001, 24000))
@@ -44,3 +45,6 @@ while threads:
 
 # Abschluss
 print("Es wurden", len(pc), "Primzahlen gefunden")
+end = time.perf_counter()
+print("Performance:", end - start, "Sec")
+
