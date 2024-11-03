@@ -12,7 +12,7 @@
 # Purpose: Errechnet die Primzahlen innerhalb eines definierten Zahlenbereiches
 #
 ##############################################
-import time
+from time import perf_counter
 
 # Variabeln
 pc = []  # Liste für Primzahlenzähler
@@ -28,10 +28,10 @@ def primrechner(ps, pe):
                 break
 
 # Prozess starten
-start = time.perf_counter()
+start = perf_counter()
 primrechner(1, 30000)
 
 # Abschluss
-print("Es wurden", len(pc), "Primzahlen gefunden")
-end = time.perf_counter()
-print("Performance:", end - start, "Sec")
+print(f"Es wurden {len(pc)} Primzahlen gefunden")
+end = perf_counter()
+print(f"Performance: {end - start} Sec")

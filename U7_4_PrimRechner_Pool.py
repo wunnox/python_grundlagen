@@ -14,7 +14,7 @@
 ##############################################
 
 # Module
-import time
+from time import perf_counter
 from multiprocessing import Pool,Pipe
 
 # Variabeln
@@ -32,7 +32,7 @@ def primrechner(data):
                 break
 
     data[2].send(len(pc))
-    data[2].close()
+    #data[2].close()
 
 def pool_handler():
     p = Pool(3)
@@ -40,7 +40,7 @@ def pool_handler():
 
 if __name__ == '__main__':
     # Prozess starten
-    start = time.perf_counter()
+    start = perf_counter()
     pool_handler()
 
 
@@ -49,6 +49,6 @@ if __name__ == '__main__':
     while pib.poll():
         anzahlprimzahlen = anzahlprimzahlen + pib.recv()
 
-    print("Es wurden", anzahlprimzahlen, "Primzahlen gefunden")
-    end = time.perf_counter()
-    print("Performance:", end - start, "Sec")
+    print(f"Es wurden {anzahlprimzahlen} Primzahlen gefunden")
+    end = perf_counter()
+    print(f"Performance: {end - start} Sec")
