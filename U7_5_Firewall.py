@@ -21,7 +21,6 @@ import openpyxl
 import argparse
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font, Color, colors
-from icecream import ic
 
 # Argparse Eingabe prüfen
 parser = argparse.ArgumentParser(
