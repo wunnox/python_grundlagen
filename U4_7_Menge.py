@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ###################################################################
 #
 # Uebung:
@@ -10,6 +9,12 @@
 ###################################################################
 
 #### Lösung: ####
+
+# KI-Prompt
+# Setze in einem Python Script ein Tupel mit folgendem Inhalt 
+# 'Petra','Hans','Fred','Hans','Ursula','Robert','Petra','Ursula','Hans'
+# Das Tupel soll in ein Set geladen werden
+# Anschliessend soll jeder Name einmal ausgegeben werden
 
 a = ('Petra', 'Hans', 'Fred', 'Hans', 'Ursula', 'Robert', 'Petra', 'Ursula', 'Hans')
 s = set(a)

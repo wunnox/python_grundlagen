@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ####################################################
 #
 # Schreiben von Logmeldungen mit dem Logger_Modul

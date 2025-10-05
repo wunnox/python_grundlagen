@@ -1,14 +1,12 @@
-#!/usr/local/bin/python3
 ###################################################################
 #
 # Beispiel Gefahr von eval und exec:
-# Starten Sie dieses Script und geben Sie an Stelle einer Zahl
-# folgenden Code ein: os.system('rm U5_Gefahr_eval.py')
-#
-# Was wäre bei der Eingabe: os.system('rm -R *') passiert?
-# Achtung nicht testen ohne vorherige Datensicherung!!!!
+# Finden Sie mit der KI heraus, welche Gefahren dieses Script beinhaltet. 
 #
 ###################################################################
+
+# KI-Prompt
+# Analysiere nachfolgendes Python Script und beurteile welche Gefahren es bergen könnte:
 
 import os
 

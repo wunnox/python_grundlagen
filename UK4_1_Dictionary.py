@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ####################################################
 #
 # Uebung:
@@ -14,6 +13,11 @@
 ####################################################
 
 #### Lösung: ####
+
+# KI-Prompt
+# Erstelle ein Python Script mit folgenden Funktionen:
+# - Schreibe folgendes Tupel in einen Variable ('Peter','Hans','Fred','Hans','Ursula','Rob','Ursula')
+# - Liste jeden Namen in obigem Tupel nur einmal auf gefolgt von einer Zahl, die angibt, wie oft dieser Name im Tupel vorkommt
 
 tup = ('Peter', 'Hans', 'Fred', 'Hans', 'Ursula', 'Robert', 'Ursula')
 dic = {}

@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ####################################################
 #
 # Uebung:
@@ -10,6 +9,9 @@
 ####################################################
 
 #### Lösung: ####
+# KI-Prompt
+# Passe nachfolgendes python Script so an, dass die Funktion aus einem externen Script geladen wird.
+# Ausgabe des Scripts U5_3_DefaultParameter.py
 
 # Inhalt Datei U56_modul_Zylinder.py:
 #####################################

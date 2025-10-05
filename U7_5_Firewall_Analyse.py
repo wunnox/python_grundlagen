@@ -1,14 +1,14 @@
-#!/usr/bin/python3
 ##############################################
 #
 # Name: U7_5_Firewall_Analyse.py
 #
 # Author: Peter Christen
 #
-# Version: 1.1
+# Version: 1.2
 #
 # Date: 26.09.2017
 #       27.09.2017: V1.1 Div. Anpassungen
+#       20.04.2024: V1.2 Code Anpassung auf neue openpyxl Version
 #
 # Purpose: Analysiert Firewall Log Daten
 #
@@ -51,18 +51,6 @@ sid = {
 ################### Keine Aenderungen mehr nötig ab hier ################
 
 # Functions
-
-
-def colsize(col):
-    if col > 90:
-        col = col - 26
-        b = chr(col)
-        col = 'A' + b
-    else:
-        col = str(chr(col))
-    return col
-
-
 def createdb():
     # Datenbank erstellen
     cursor.execute(
@@ -192,52 +180,40 @@ def write_excel():
     cursor.execute("select * from firelog")
 
     for row in cursor:
-        col = colsize(coln)
-        ce = col + str(z)
-        ws1[ce].value = row[0]
-        col = colsize(coln + 1)
-        ce = col + str(z)
-        ws1[ce].value = row[1]
-        col = colsize(coln + 2)
-        ce = col + str(z)
-        ws1[ce].value = row[2]
-        col = colsize(coln + 3)
-        ce = col + str(z)
-        ws1[ce].value = row[3]
-        col = colsize(coln + 4)
-        ce = col + str(z)
+        ws1.cell(row=z, column=1, value=row[0])
+        ws1.cell(row=z, column=2, value=row[1])
+        ws1.cell(row=z, column=3, value=row[2])
+        ws1.cell(row=z, column=4, value=row[3])
+        
+        ws1.cell(row=z, column=5, value=row[4])
+        cell=ws1.cell(row=z, column=5)
         if row[4] > 500000:
-            ws1[ce].fill = fillR
+            cell.fill = fillR
         elif row[4] > 100000:
-            ws1[ce].fill = fillO
+            cell.fill = fillO
         else:
-            ws1[ce].fill = fillG
-        ws1[ce].value = row[4]
+            cell.fill = fillG
+        
         z += 1
 
     # Summe der Hit Counts ausgeben
     dbnamen = []
     dbhits = []
     z = 3
-    col = colsize(coln + 6)
-    ce = col + str(z)
     ws1.merge_cells('G3:H3')
-    ws1[ce].fill = fillT
-    ws1[ce].font = fontb
-    ws1[ce].value = "Summe der Hits"
+    ws1.cell(row=z, column=7, value="Summe der Hits")
+    cell=ws1.cell(row=z, column=7)
+    cell.fill = fillT
+    cell.font = fontb
     z += 1
-
+    
     rows = cursor.execute(
         "select sid,sum(count) from firelog group by sid order by sum(count) desc")
     for row in rows:
         dbnamen.append(row[0])
         dbhits.append(row[1])
-        col = colsize(coln + 6)
-        ce = col + str(z)
-        ws1[ce].value = row[0]
-        col = colsize(coln + 7)
-        ce = col + str(z)
-        ws1[ce].value = row[1]
+        ws1.cell(row=z, column=7, value=row[0])
+        ws1.cell(row=z, column=8, value=row[1])
         z += 1
 
     wb.save(filename=ExcelName)

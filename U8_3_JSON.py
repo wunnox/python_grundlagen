@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ###################################################################
 #
 # Uebung:
@@ -16,6 +15,12 @@
 ###################################################################
 
 #### Lösung: ####
+# KI-Prompt
+# Erstelle ein Python Script mit folgenden Eigenschaften:
+# - Es soll folgenden Ausgabe in eine JSON-Datei schrieben
+#   Artikelnummer: 12-3467-9, Artikel: Schraube, Typ: M10
+# - Danach soll die JSON-Datei wieder eingelesen und nur den Wert "Schraube"
+#   ausgegeben werden
 
 import json
 

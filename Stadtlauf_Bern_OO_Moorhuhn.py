@@ -1,4 +1,3 @@
-#! env python3
 ##############################################
 #
 # Name: Stadtlauf_Bern_OO.py

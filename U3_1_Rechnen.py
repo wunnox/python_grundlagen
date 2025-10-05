@@ -1,23 +1,21 @@
-#!/usr/bin/python3
 ###################################################################
 #
 # Uebung:
-# Setzen sie die Variable a auf 9 und die Variable b auf 12.
-# Addieren Sie 5 zur Variable a und multiplizieren Sie das Resultat
-# mit der Variable b.
-# Schreiben Sie das Resultat in die Variable c
-# Geben Sie den Inhalt der Variable c auf dem Bildschirm aus.
+# Schreiben Sie die Zahlen 3 und 9 in je eine Variable
+# Geben Sie das Resultat der Multiplikation und Addition dieser
+# Variabeln auf dem Bildschirm aus.
 #
 ###################################################################
 
 #### Lösung: ####
+# KI-Prompt
+# Erstelle ein Python Script, welches folgende Aufgaben erfüllt:
+# - Schreibe die Zahl drei in die Variable a und die Zahl 9 in eine andere Variable
+# - Gib das Resultat der Multiplikation und der Addition dieser Zahlen als f-String aus
 
-# Variablen setzen
+# Variablenzuweisung
 a = 9
 b = 12
 
-# Berechnung
-c = (a + 5) * b
-
-# Ausgabe
-print("Resultat:", c)
+# Ausgabe beider Ergebnisse auf einer Zeile
+print(f"Multiplikation: {a * b} | Addition: {a + b}")

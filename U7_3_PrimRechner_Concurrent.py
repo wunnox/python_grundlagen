@@ -1,4 +1,3 @@
-#!/Users/peter/opt/anaconda3/bin/python3
 ##############################################
 #
 # Name: U7_2_PrimRechner_Concurrent.py

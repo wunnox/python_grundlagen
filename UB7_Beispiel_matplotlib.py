@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ##############################################
 #
 # Name: UB7_Beispiel_matplotlib.py

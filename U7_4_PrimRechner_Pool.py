@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ##############################################
 #
 # Name: U7_4_PrimRechner_Pool.py

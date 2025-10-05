@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ####################################################
 #
 # Uebung:
@@ -8,6 +7,9 @@
 ####################################################
 
 #### Lösung: ####
+# KI-Promt
+# Ich bin am 20.06.1965 geboren, erstellen ein Python Script mit dem Modul time, welches mein Alter in Jahren ausgibt.
+
 import time
 
 dztupel = (1965, 6, 20, 0, 0, 0, 0, 0, 0)

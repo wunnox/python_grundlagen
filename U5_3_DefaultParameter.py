@@ -1,4 +1,3 @@
-#!env python3
 ####################################################
 #
 # Uebung:
@@ -18,6 +17,15 @@
 ####################################################
 
 #### Lösung: ####
+# KI-Prompt
+# Erstelle ein Python Script, welches eine Funktionen beinhaltet, die für einen Zylinder folgende
+# Berechnungen erstellt und zurück gibt, welche anschliessend auf dem Bildschirm ausgegeben werden:
+# - Umfang
+# - Grundfläche
+# - Volumen
+
+# Der Funktion der Radius als r übergeben werden. Die Höhe als h kann optional übergeben werden 
+# und soll einen default Wert von 10 haben.
 
 def zylinder(r,h=10):
     pi=3.14

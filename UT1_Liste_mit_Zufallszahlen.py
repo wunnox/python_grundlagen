@@ -1,4 +1,3 @@
-#!/usr/local/bin/python3
 ####################################################
 #
 # Uebung UT1_Liste_mit_Zufallszahlen

@@ -1,7 +1,3 @@
-#!/usr/bin/python
-
-import sqlite3
-
 ###################################################################
 # Uebung:
 # Folgende Mitarbeiter müssen noch in die Tabelle "personen" eingefügt werden:
@@ -11,6 +7,8 @@ import sqlite3
 ###################################################################
 
 #### Lösung: ####
+
+import sqlite3
 
 # Verbindung und Cursor erzeugen
 connection = sqlite3.connect("firma.db")

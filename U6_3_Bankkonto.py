@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ##############################################
 #
 # Name: U6_3_Bankkonto.py
@@ -13,6 +12,13 @@
 #          Auszahlen 
 #
 ##############################################
+
+#### Lösung: ####
+# KI-Prompt
+# Passe nachfolgendes Python Script so an, dass nicht mehr in jeder Methode die Funktion 
+# datetime.datetime.now() verwendet werden muss. Erstelle stattdessen eine neue Methode, 
+# welche aufgerufen werden kann und als Antwort den entsprechenden Zeitstempel zurück gibt.
+# Auszug aus Script U6_2_Bankkonto.py
 
 import datetime, time
 

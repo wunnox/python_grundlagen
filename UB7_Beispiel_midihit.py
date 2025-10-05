@@ -1,4 +1,3 @@
-#!/usr/bin/python
 ##############################################
 #
 # Name: UB7_Beispiel_midihit.py

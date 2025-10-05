@@ -1,4 +1,3 @@
-#!/usr/local/bin/python3
 #############################################
 #
 # Name: U7_Regex_Beispiele.py

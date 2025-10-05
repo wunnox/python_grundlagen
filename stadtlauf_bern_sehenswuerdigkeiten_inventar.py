@@ -1,4 +1,3 @@
-#! env python3
 ##############################################
 #
 # Name: stadtlauf_bern_sehenswuerdigkeiten_inventar.py

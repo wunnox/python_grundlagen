@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ####################################################
 #
 # Uebung:
@@ -8,6 +7,11 @@
 ####################################################
 
 #### Lösung: ####
+# KI-Prompt
+# Erstellen Sie ein Python Script, welches zählt, wie viele Parameter auf der Kommandozeile angegeben wurden.
+# Wenn kein Parameter eingegeben wurde, soll ein entsprechender Text ausgegeben werden
+# Ansonsten soll die Anzahl Parameter angegeben werden.
+
 import sys
 
 l = len(sys.argv)

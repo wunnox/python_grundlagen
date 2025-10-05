@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ###################################################################
 #
 # Uebung:
@@ -8,6 +7,8 @@
 ###################################################################
 
 #### Lösung: ####
+# KI-Prompt
+# Erstelle mit Python eine for-Schleife, welche alle Zahlen von 50 bis 60 ausgibt
 
 for i in range(50, 61):
     print(i)

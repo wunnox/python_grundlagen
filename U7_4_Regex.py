@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ####################################################
 #
 # Uebung:
@@ -12,6 +11,12 @@
 ####################################################
 
 #### Lösung: ####
+# KI-Propmt
+# Erstellen ein Python Script, welches mit Regex den nachfolgenden Satz:
+# "dies ist mein Haus und dies ist dein Haus"
+# ändert in:
+# "Dies ist mein Haus und dies ist dein Stall"
+
 import re
 
 tx = "dies ist mein Haus und dies ist dein Haus"

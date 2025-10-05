@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ###################################################################
 #
 # Uebung:
@@ -11,6 +10,12 @@
 
 #### Lösung: ####
 
+# KI-Prompt
+# Erstelle ein Python Script, welches mit der Funktion input() eine Zahl in eine Variable einliest
+# Dieser Zahl soll anschliessend 5 addiert und das Resultat auf dem Bildschirm ausgegeben werden
+# Stelle sicher, dass bei einer falschen Eingaben das Programm nicht abbricht.
+# Stattdessen soll es eine entsprechende Meldung ausgeben und die Zahl 10 mit fünf addieren
+
 # Eingabe
 z = input("Bitte geben Sie eine ganze Zahl ein: ")
 
@@ -22,3 +27,4 @@ try:
 # Fehler bei Umwandlung
 except Exception as e:
     print(z, "ist keine Zahl - Fehlermeldung:", e)
+    print(f"Stattdessen wird 10 + 5 ausgegeben: {10 + 5}")

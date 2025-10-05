@@ -1,4 +1,3 @@
-#!/usr/local/bin/python3
 ####################################################
 #
 # Uebung UT2.3_Aktueller_Tag:

@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ##############################################
 #
 # Name: U6_2_Bankkonto.py
@@ -13,6 +12,12 @@
 #          Auszahlen 
 #
 ##############################################
+
+#### Lösung: ####
+# KI-Prompt
+# Ergänze nachfolgendes Python Script mit der Methode "auszahlen". Die Beträge, welche über diese
+# Methode ausbezahlt werden, sollen der Variable kontostand abgezogen werden.
+# Script Bankkonto_4.py 
 
 import datetime, time
 

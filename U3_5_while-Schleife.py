@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ###################################################################
 #
 # Uebung:
@@ -9,6 +8,12 @@
 ###################################################################
 
 #### Lösung: ####
+
+# KI-Prompt
+
+# Erstelle mit Python eine Endlosschleife, in welcher eine Variable hoch gezählt wird
+# Der aktuelle Wert der Variable soll auf dem Bildschirm ausgegeben werden
+# Die Schleife soll nach zehn Durchgängen abgebrochen werden
 
 c = 0
 while True:

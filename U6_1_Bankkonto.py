@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ##############################################
 #
 # Name: U6_1_Bankkonto.py
@@ -13,6 +12,13 @@
 #          Datenausgaben
 #
 ##############################################
+
+#### Lösung: ####
+# KI-Prompt
+# Ergänze nachfolgendes Python Script mit der Methode "personalien_erfassen". 
+# Übergib der Methode die Werte Vorname, Nachname, Wohnort und Zeitstempel. 
+# Passen die Methode «daten_ausgeben» so an, dass die Personalien auch ausgegeben werden.
+# Script von Bankkonto_3.py
 
 import datetime
 

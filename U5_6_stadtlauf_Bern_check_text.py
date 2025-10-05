@@ -1,4 +1,3 @@
-#! env python3
 ##############################################
 #
 # Name: U5_6_stadtlauf_Bern_check_text.py

@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ##############################################
 #
 # Name: U6_4_Auto.py
@@ -16,6 +15,13 @@
 # Vorlage: Übung 6.7 oop_operator.py aus Buch "Einstig in Python"
 #
 ##############################################
+
+#### Lösung: ####
+# KI-Prompt
+# Erstelle ein Objekt Orientiertes Python Script mit folgenden Funktionen:
+# - Es sollen nacheinander zwei Fahrzeugen und ihre maximale Geschwindigkeit abgefragt werden
+# - Danach soll mit den besonderen Operatormethoden verglichen werden, welches Fahrzeug schneller ist, oder ob beide gleich schnell sind.
+# - Das Resultat soll als Ausgabe auf dem Bildschirm erscheinen
 
 # Klassen
 class Auto:

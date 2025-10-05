@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 ###################################################################
 #
 # Uebung:
@@ -9,6 +8,11 @@
 ###################################################################
 
 #### Lösung: ####
+# KI-Prompt:
+# Erstelle ein Python Script, welches folgende Aufgaben erfüllt:
+# - Verwende die Input-Funktion um eine Zahl einzulesen
+# - Erstelle eine if-Bedingung, welche prüft, ob die Zahl grösser ist als 50 oder nicht
+# - Gib zwei unterschiedliche Text als Resultat aus
 
 # Eingabe einer Zahl
 print("Bitte eine Zahl eingeben")

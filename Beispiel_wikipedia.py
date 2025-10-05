@@ -1,7 +1,6 @@
-#!/usr/bin/python3
 ##############################################
 #
-# Name: U9_3_wikipedia.py
+# Name: Beispiel_wikipedia.py
 #
 # Author: Peter Christen
 #

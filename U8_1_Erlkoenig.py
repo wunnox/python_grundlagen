@@ -1,4 +1,3 @@
-#!/usr/bin/python
 ###################################################################
 #
 # Uebung:
@@ -10,6 +9,9 @@
 ###################################################################
 
 #### Lösung: ####
+# KI-Prompt
+# Erstelle ein Python Script, welches die Textdatei Erlkoenig.txt einliest, die beiden "er"
+# am Zeilenanfang auf "Er" ändert und den ganzen Text in die Datei Erlkoenig2.txt ausgibt
 
 import re
 
