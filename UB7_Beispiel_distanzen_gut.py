@@ -18,11 +18,11 @@ from geopy.geocoders import Nominatim
 from geopy import distance
 
 # Variabeln
-geolocator = Nominatim(user_agent="geoapiExercises")
+geolocator = Nominatim(user_agent="geoapiTest")
 
 # Adresse bestimmen
-digibe = geolocator.geocode("Bubenbergplatz 11, 3011 Bern")
 digizh = geolocator.geocode("Limmatstrasse 50, 8005 Zürich")
+digibe = geolocator.geocode("Bubenbergplatz 11, 3011 Bern")
 
 # Längen und Breitengrade auslesen
 digizhkoord = (digizh.latitude, digizh.longitude)
