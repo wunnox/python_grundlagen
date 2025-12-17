@@ -8,12 +8,9 @@
 #
 # Date: 11.12.2015
 #
-# Purpose: Erzeugt ein Zufalls midi-Song
+# Purpose: Nachfolgendes Script erzeugt eine Midi-File mit einer zufälligen Meldodie über 8 Takte
 #
 ##############################################
-
-#
-# http://old.mxm.dk/products/public/pythonmidi/
 
 import smidi
 import os

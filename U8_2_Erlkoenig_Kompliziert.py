@@ -10,7 +10,15 @@
 
 #### Lösung: ####
 
-import re
+import re,sys
+
+# Windows Fix
+os=sys.platform
+if os=='win32':
+   print("Füge Korrektur für Windows ein")
+   korrektur=1
+else:
+   korrektur=0
 
 pos = []
 # Datei zum Lesen und Schreiben öffnen
@@ -24,8 +32,7 @@ while zeile:
     zeile = d.readline()
 
 for p in pos:
-    d.seek(p)
+    d.seek(p-korrektur)
     d.write("E")
 
 d.close()
-quit()

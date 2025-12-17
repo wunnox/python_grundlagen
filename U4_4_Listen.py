@@ -8,6 +8,8 @@
 ###################################################################
 
 #### Lösung: ####
+# KI-Prompt:
+# Verwenden Sie den Text aus der Aufgabe
 
 a = [30, 5, 10, "Tag"]
 a.append(8)

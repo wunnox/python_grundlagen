@@ -4,9 +4,9 @@
 #
 # Author: Peter Christen
 #
-# Version: 1.1
+# Version: 1.2
 #
-# Date: 08.09.2020
+# Date: 30.06.2024
 #
 # Purpose: Liest Adressen ein ung gibt deren
 #          Geo-Positionen aus und berechnet
