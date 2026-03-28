@@ -10,19 +10,20 @@
 
 #### Lösung: ####
 
-import re,sys
+import re
+import sys
 
 # Windows Fix
-os=sys.platform
-if os=='win32':
-   print("Füge Korrektur für Windows ein")
-   korrektur=1
+os = sys.platform
+if os == 'win32':
+    print("Füge Korrektur für Windows ein")
+    korrektur = 1
 else:
-   korrektur=0
+    korrektur = 0
 
 pos = []
 # Datei zum Lesen und Schreiben öffnen
-d = open("Erlkoenig.txt", "r+")
+d = open("Erlkoenig.txt", "r+", encoding='utf-8')
 zeile = d.readline()
 while zeile:
     if re.findall('^e.+', zeile):

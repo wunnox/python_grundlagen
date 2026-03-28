@@ -5,66 +5,71 @@
 # Author: Peter Christen
 #
 # Version: 1.0
-# 
+#
 # Date: 22.05.2020
 #
-# Purpose: Kontoverwaltung 
+# Purpose: Kontoverwaltung
 #          Vererbung
-#          Einzahlen 
+#          Einzahlen
 #
 ##############################################
 
-import datetime, time
+import datetime
+import time
 
-#Klassen
+# Klassen
+
+
 class Konto:
-  '''Klasse Konto zur Verwaltung von Bankkonten'''
+    '''Klasse Konto zur Verwaltung von Bankkonten'''
 
-  #Konstruktor Methode
-  def __init__(self,ktnr):
-      self.kontonummer=ktnr
+    # Konstruktor Methode
+    def __init__(self, ktnr):
+        self.kontonummer = ktnr
 
-  #Weitere Methode
-  def kontostand_erfassen(self,kontostand):
-      '''Initialer Kontostand erfassen'''
+    # Weitere Methode
+    def kontostand_erfassen(self, kontostand):
+        '''Initialer Kontostand erfassen'''
 
-      now = datetime.datetime.now()
-      self.kontostand=kontostand
-      self.aenderung_kontostand=now.strftime("%d.%m.%Y %H:%M:%S")
+        now = datetime.datetime.now()
+        self.kontostand = kontostand
+        self.aenderung_kontostand = now.strftime("%d.%m.%Y %H:%M:%S")
 
-  def daten_ausgeben(self):
-      '''Kunden- und Kontodaten ausgeben'''
+    def daten_ausgeben(self):
+        '''Kunden- und Kontodaten ausgeben'''
 
-      print ("######################")
-      print ("# Kontoangaben       ")
-      print ("######################")
-      print ("Kontonummer:", self.kontonummer)
-      print ("Kontostand:", "{:.2f}".format(self.kontostand))
-      print ("per Stichtag:", self.aenderung_kontostand)
-      print ()
+        print("######################")
+        print("# Kontoangaben       ")
+        print("######################")
+        print("Kontonummer:", self.kontonummer)
+        print("Kontostand:", "{:.2f}".format(self.kontostand))
+        print("per Stichtag:", self.aenderung_kontostand)
+        print()
+
 
 class Transaktionen(Konto):
-  '''Subklasse Transaktion zum Ein- und Auszahlen'''
+    '''Subklasse Transaktion zum Ein- und Auszahlen'''
 
-  def __init__(self,ktnr):
-      super().__init__(ktnr)
+    def __init__(self, ktnr):
+        super().__init__(ktnr)
 
-  def einzahlen(self,betrag):
-      '''Geld einzahlen'''
+    def einzahlen(self, betrag):
+        '''Geld einzahlen'''
 
-      now = datetime.datetime.now()
-      self.kontostand+=betrag
-      self.aenderung_kontostand=now.strftime("%d.%m.%Y %H:%M:%S")
+        now = datetime.datetime.now()
+        self.kontostand += betrag
+        self.aenderung_kontostand = now.strftime("%d.%m.%Y %H:%M:%S")
 
-#Objekt/Daten erfassen
-konto1=Transaktionen("12345-1")
+
+# Objekt/Daten erfassen
+konto1 = Transaktionen("12345-1")
 konto1.kontostand_erfassen(200)
 
-#Daten ausgeben
+# Daten ausgeben
 konto1.daten_ausgeben()
 
 time.sleep(2)
 
-#Geld einbezahlen
+# Geld einbezahlen
 konto1.einzahlen(1000)
 konto1.daten_ausgeben()

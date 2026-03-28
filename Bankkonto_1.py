@@ -5,7 +5,7 @@
 # Author: Peter Christen
 #
 # Version: 1.0
-# 
+#
 # Date: 25.05.2020
 #
 # Purpose: Kontoverwaltung
@@ -13,21 +13,21 @@
 #
 ##############################################
 
-#Klassen
+# Klassen
 class Konto:
-  '''Klasse Konto zur Verwaltung von Bankkonten'''
+    '''Klasse Konto zur Verwaltung von Bankkonten'''
 
-  #Konstruktor Methode
-  def __init__(self,ktnr):
-      self.kontonummer=ktnr
+    # Konstruktor Methode
+    def __init__(self, ktnr):
+        self.kontonummer = ktnr
 
-  #Destruktor Methode
-  def __del__(self):
-      print ("\nLösche", self.kontonummer, "wieder")
+    # Destruktor Methode
+    def __del__(self):
+        print("\nLösche", self.kontonummer, "wieder")
 
-#Objekt erfassen
-konto1=Konto("12345-1")
 
-#Daten auslesen
-print("Kontonummer:",konto1.kontonummer)
+# Objekt erfassen
+konto1 = Konto("12345-1")
 
+# Daten auslesen
+print("Kontonummer:", konto1.kontonummer)

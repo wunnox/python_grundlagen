@@ -5,7 +5,7 @@
 # Author: Peter Christen
 #
 # Version: 1.1
-# 
+#
 # Date: 22.05.2020
 #       05.05.2022 V1.1 Zeitanpassung
 #
@@ -16,38 +16,40 @@
 
 import datetime
 
-#Klassen
+# Klassen
+
+
 class Konto:
-  '''Klasse Konto zur Verwaltung von Bankkonten'''
-  
-  #Konstruktor Methode
-  def __init__(self,ktnr):
-      #Attribute
-      self.kontonummer=ktnr
+    '''Klasse Konto zur Verwaltung von Bankkonten'''
 
-  #Weitere Methode
-  def kontostand_erfassen(self,kontostand):
-      '''Initialer Kontostand erfassen'''
+    # Konstruktor Methode
+    def __init__(self, ktnr):
+        # Attribute
+        self.kontonummer = ktnr
 
-      now = datetime.datetime.now()
-      self.kontostand=kontostand
-      self.aenderung_kontostand=now.strftime("%d.%m.%Y %H:%M:%S")
+    # Weitere Methode
+    def kontostand_erfassen(self, kontostand):
+        '''Initialer Kontostand erfassen'''
 
-  def daten_ausgeben(self):
-      '''Kunden- und Kontodaten ausgeben'''
+        now = datetime.datetime.now()
+        self.kontostand = kontostand
+        self.aenderung_kontostand = now.strftime("%d.%m.%Y %H:%M:%S")
 
-      print ("######################")
-      print ("# Kontoangaben       ")
-      print ("######################")
-      print ("Kontonummer:", self.kontonummer)
-      print ("Kontostand:", "{:.2f}".format(self.kontostand))
-      print ("per Stichtag:", self.aenderung_kontostand)
-      print ()
+    def daten_ausgeben(self):
+        '''Kunden- und Kontodaten ausgeben'''
 
-#Objekt/Daten erfassen
-konto1=Konto("12345-1")
+        print("######################")
+        print("# Kontoangaben       ")
+        print("######################")
+        print("Kontonummer:", self.kontonummer)
+        print("Kontostand:", "{:.2f}".format(self.kontostand))
+        print("per Stichtag:", self.aenderung_kontostand)
+        print()
+
+
+# Objekt/Daten erfassen
+konto1 = Konto("12345-1")
 konto1.kontostand_erfassen(200)
 
-#Daten ausgeben
+# Daten ausgeben
 konto1.daten_ausgeben()
-

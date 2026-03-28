@@ -27,7 +27,7 @@
 class Auto:
     '''Klasse zum Verwalten von Fahrzeugen'''
 
-    def __init__(self, marke,speed):
+    def __init__(self, marke, speed):
         self.marke = marke
         self.speed = speed
 
@@ -40,18 +40,21 @@ class Auto:
     def __sub__(self, other):
         return self.speed - other.speed
 
-marke1=input("Fahrzeugname 1: ")
-speed1=int(input("Speed 1: "))
-marke2=input("Fahrzeugname 2: ")
-speed2=int(input("Speed 2: "))
 
-objekt1 = Auto(marke1,speed1)
-objekt2 = Auto(marke2,speed2)
+marke1 = input("Fahrzeugname 1: ")
+speed1 = int(input("Speed 1: "))
+marke2 = input("Fahrzeugname 2: ")
+speed2 = int(input("Speed 2: "))
+
+objekt1 = Auto(marke1, speed1)
+objekt2 = Auto(marke2, speed2)
 
 print()
 if objekt1 == objekt2:
     print(f"Der {objekt1.marke} und der {objekt2.marke} sind gleich schnell ({int(objekt1.speed)} km/h)")
 elif objekt1 > objekt2:
-    print(f"Der {objekt1.marke} ist {objekt1 - objekt2} km/h schneller als der {objekt2.marke}")
+    print(
+        f"Der {objekt1.marke} ist {objekt1 - objekt2} km/h schneller als der {objekt2.marke}")
 else:
-    print(f"Der {objekt2.marke} ist {objekt2 - objekt1} km/h schneller als der {objekt1.marke}")
+    print(
+        f"Der {objekt2.marke} ist {objekt2 - objekt1} km/h schneller als der {objekt1.marke}")
