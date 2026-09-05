@@ -17,7 +17,7 @@
 
 c = 100
 while True:
-    c += 1
     print(c)
     if c == 110:
         break
+    c += 1

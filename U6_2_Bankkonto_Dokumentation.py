@@ -102,9 +102,6 @@ class Transaktionen(Konto):
     ===================
     '''
 
-    def __init__(self, ktnr):
-        super().__init__(ktnr)
-
     def einzahlen(self, betrag):
         '''
         Methode einzahlen

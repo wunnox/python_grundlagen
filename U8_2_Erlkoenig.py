@@ -15,7 +15,7 @@
 
 filename = "Erlkoenig.txt"
 
-with open(filename, "r+") as f:
+with open(filename, "r+", encoding='utf-8') as f:
     lines = f.readlines()
     f.seek(0)        # Zurück an den Anfang der Datei
     f.truncate()     # Datei-Inhalt löschen

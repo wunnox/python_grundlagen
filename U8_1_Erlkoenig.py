@@ -16,12 +16,12 @@
 import re
 
 # Datei einlesen
-r = open("Erlkoenig.txt")
+r = open("Erlkoenig.txt", encoding='utf-8')
 allezeilen = r.readlines()
 r.close()
 
 # Neue Datei zum schreiben öffnen
-w = open("Erlkoenig2.txt", "w")
+w = open("Erlkoenig2.txt", "w", encoding='utf-8')
 for zeile in allezeilen:
     w.write(re.sub("^er", "Er", zeile))
 w.close()

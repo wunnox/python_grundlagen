@@ -5,14 +5,14 @@
 # Die "er" am Zeilenanfang sollten mit einem Grossbuchstaben anfangen
 # Öffnen Sie das File "Erloenig.txt" zum Lesen und Schreiben
 # Ändern Sie die entsprechenden Charakter "e" direkt auf "E" auf den 
-# Positionen 76 und 111
+# Positionen 76 und 111, (Windows 78, 114)
 #
 ###################################################################
 
 #### Lösung: ####
 
 #File öffnen und einlesen
-d = open("Erlkoenig.txt", "r+")
+d = open("Erlkoenig.txt", "r+", encoding='utf-8')
 allezeilen = d.readlines()
 
 #e auf E anpassen

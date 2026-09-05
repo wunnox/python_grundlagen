@@ -50,8 +50,10 @@ class Konto:
 class Transaktionen(Konto):
     '''Subklasse Transaktion zum Ein- und Auszahlen'''
 
-    def __init__(self, ktnr):
-        super().__init__(ktnr)
+    # Ist in diesem Beispiel nicht nötig, da Konstruktor vererbt wird. 
+    # Wenn aber eine zusätzliche oder abweichende Initialisierung benötigt wird, braucht es diese Zeilen
+    #def __init__(self, ktnr):
+    #    super().__init__(ktnr)
 
     def einzahlen(self, betrag):
         '''Geld einzahlen'''
