@@ -1,82 +1,56 @@
 ####################################################
+# Übung: Stadtlauf Bern OO – Wegdaten in Datei schreiben
 #
-# Uebung:
-# Öffnen Sie eine Datei zum Beschreiben
-# Bewegen Sie anschliessend die Figur mit den Pfeiltasten durch die Stadt
-# Bei jedem Schritt der Figur sollen die Wegdaten in die Datei geschrieben werden
-# Wenn die Figur steht, sollen keine Daten geschrieben werden
-# Am Ende soll die Datei wieder geschlossen werden
+# Öffnen Sie eine Datei zum Beschreiben. Bewegen Sie Marsi mit
+# den Pfeiltasten durch die Stadt. Bei jeder Positionsänderung
+# sollen die Wegdaten in die Datei geschrieben werden.
 #
-# Die Idee ist, dass Sie die Daten in dieser Datei verwenden können, um denselben
-# Weg noch einmal abzulaufen
-# 
-# Vorhandene Funktionen
+# Wenn Marsi steht, sollen keine weiteren Daten geschrieben werden.
+# Schliessen Sie die Datei am Ende des Programms wieder.
 #
-# go_right()   : Geht einen Schritt nach rechts
-# go_left()    : Geht einen Schritt nach links
-# go_up()      : Geht einen Schritt hoch
-# go_down()    : Geht einen Schritt runter
-# go_walk_right(x,y): Läuft zur Position x,y nach rechts
-# go_walk_left(x,y) : Läuft zur Position x,y nach links
-# Taste q      : Abbruch des Spiels
-#
-# Hinweis: 
-#
+# Die aufgezeichnete Datei kann anschliessend mit der Leseübung
+# wiedergegeben werden.
 ####################################################
 
-#Module
-import pygame
-import time
 import stadtlauf_bern_oo_modul as sf
-from U5_6_stadtlauf_Bern_check_text import check_text
+from U5_6_stadtlauf_Bern_check_text_turtle import check_text
 
-run=True
-d=1           #Anzahl Durchgänge
-slower=0.01   #Je höher die Zahl, umso langsamer läuft die Figur
-x=0
-y=0
+run = True
+marsi = sf.Figur("Marsi")
+x, y = marsi.x, marsi.y
 
-#Figur als Objekt initialisieren
-marsi=sf.Figur('Marsi')
-
-##############################################
-#######################################
+####################################################
 # Hier kommt Ihr Code
-# Datei zum Beschreiben öffnen
+# Datei zum Beschreiben öffnen.
+# Tipp: w = open("Wegdaten_OO.txt", "w", encoding="utf-8")
 
 
+# bis hier
+####################################################
 
-#bis hier
-#######################################
-##############################################
+# Alte Position: Nur bei Bewegung wird ein Datensatz geschrieben.
+x1, y1 = x, y
 
 while run:
-    sf.clock.tick(27)
-    x,y,left,right,run=marsi.check_key()  #Prüfen ob und welche Taste gedrückt wurde
-    text2show,xt,yt=check_text(x,y)
-    sf.redrawGameWindow(text2show,xt,yt-15,x,y,left,right)  #Grafik neu darstellen
+    x, y, left, right, run = marsi.check_key()
+    text2show, xt, yt = check_text(x, y)
+    sf.redrawGameWindow(text2show, xt, yt - 15, marsi)
 
-##############################################
-    #######################################
+    ####################################################
     # Hier kommt Ihr Code
-    # Datei mit Wegdaten beschreiben
+    # Datei mit Wegdaten beschreiben.
+    # Speichern Sie x, y, left und right, getrennt mit ":".
 
 
+    # bis hier
+    ####################################################
 
+sf.screen.bye()
 
-    #bis hier
-    #######################################
-##############################################
-    
-#Ende Darstellung
-pygame.quit()
-
-##############################################
-#######################################
+####################################################
 # Hier kommt Ihr Code
-# Datei schliessen
+# Datei schliessen.
 
 
-#bis hier
-#######################################
-##############################################
+# bis hier
+####################################################

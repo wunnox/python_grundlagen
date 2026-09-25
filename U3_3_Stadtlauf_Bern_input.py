@@ -1,70 +1,60 @@
 ####################################################
+# Übung: Stadtlauf Bern – input() mit Turtle
 #
-# Uebung:
-# Fügen Sie im markierten Bereich folgender Code ein:
+# Fügen Sie im markierten Bereich Code ein:
 #
-#   - Eine input-Funktion, mit welcher die Anzahl Schritte eingegeben werden kann, welche die Figur laufen soll
-#   - Prüfen Sie die Eingabe, bei weniger als 10 Schritten wird er Wert auf 10 gesetzt, bei mehr als 450 Schritten soll er auf 450 gesetzt werden
-#   - Verwenden Sie zum Einlesen des Wertes in input die Variable "schritte"
-#   - Sobald die Figur beim Zytglogge Turm ankommt, beendet sich das Spiel
+# - Lesen Sie mit input() die Anzahl Schritte ein, welche Marsi
+#   laufen soll.
+# - Verwenden Sie dazu die Variable schritte.
+# - Bei weniger als 10 Schritten wird der Wert auf 10 gesetzt.
+# - Bei mehr als 450 Schritten wird der Wert auf 450 gesetzt.
+# - Sobald Marsi beim Zytglogge ankommt, endet der automatische Lauf.
 #
-# Vorhandene Funktionen
-#
-# go_right()   : Geht einen Schritt nach rechts
-# go_left()    : Geht einen Schritt nach links
-# go_up()      : Geht einen Schritt hoch
-# go_down()    : Geht einen Schritt runter
-# Taste q      : Abbruch des Spiels
-#
-# Hinweis: Neuer Code nur im markierten Bereich eintragen
-#
+# Taste q: Spiel beenden.
 ####################################################
 
-#Module
-import pygame
 import time
 from stadtlauf_bern_modul import *
 
-#Variablen
-schritte=0    #Anzahl Schritte
-d=2           #Anzahl Durchgänge
-slower=0.01   #Je höher die Zahl, umso langsamer läuft die Figur
+# Variablen
+schritte = 0
+d = 2
+slower = 0.01
 
-#Start der Darstellung
+# Start der Darstellung
 while run:
-    clock.tick(27)
 
-    #Lauf zu Zytglogge Turm
+    # Lauf zum Zytglogge-Turm
     for i in range(schritte):
-      time.sleep(slower)      #Laufgeschwindigkeit reduzieren
-      x=go_right()            #Gehe nach rechts
-      if x%10==0 and x<=210:  #Nach jedem 10ten Schritt ein Schritt hoch
-         y=go_up()
-      elif x%10==0 and x<450: #Nach jedem 10ten Schritt ein Schritt runter
-         y=go_down()
+        time.sleep(slower)
+        x = go_right()
 
-      redrawGameWindow()      #Grafik neu darstellen
+        if x % 10 == 0 and x <= 210:
+            y = go_up()
+        elif x % 10 == 0 and x < 450:
+            y = go_down()
 
-    if x>450: 
-      go_stop()
-      redrawGameWindow("Weiter geht's nicht mehr",x,y-10)  #Grafik neu darstellen
-      time.sleep(2)
-      break
+        redrawGameWindow()
+
+        if x > 450:
+            go_stop()
+            redrawGameWindow("Weiter geht's nicht mehr", x, y - 10)
+            time.sleep(2)
+            break
 
     go_stop()
-    run=check_key()      #Prüfen ob und welche Taste gedrückt wurde
-    redrawGameWindow()   #Grafik neu darstellen
+    redrawGameWindow()
 
-##############################################
-    #######################################
-    # Hier kommt Ihr Code (ab diesem Einzug)
-    # Erfassen Sie einen Wert für die Variable "schritte"
+    ####################################################
+    # Hier kommt Ihr Code
+    # Erfassen Sie einen Wert für die Variable "schritte".
 
 
-    
-    #bis hier
-    #######################################
-##############################################
+    # bis hier
+    ####################################################
 
-#Ende Darstellung
-pygame.quit()
+    # Nach der Eingabe kann Marsi mit Pfeiltasten bewegt werden.
+    run = check_key()
+    redrawGameWindow()
+
+screen.bye()

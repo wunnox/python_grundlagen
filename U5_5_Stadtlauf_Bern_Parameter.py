@@ -1,103 +1,81 @@
 ####################################################
+# Übung: Stadtlauf Bern – Parameter mit Turtle
 #
-# Uebung:
-# Geben Sie beim Starten des Scripts das Ziel als Paraemter mit
-# Die Figur wird dann bis zu diesem Ziel laufen
-# 
-# Prüfen Sie, ob ein Parameter eingegeben wurde.
-# Wenn nein, erscheint die Meldung: "Es wurde kein Ziel eingegeben!" und das 
-# Script bricht mit der Funktion exit() ab
-# 
-# Wenn ja, schreiben Sie den Parameter in die Variable "ziel"
+# Geben Sie beim Starten des Skripts ein Ziel als Parameter an.
+# Marsi soll dann zu diesem Ziel laufen.
 #
-# Gültige Ziele sind die folgenden: 'Käfigturm', 'Zytglogge', 'Bundeshaus', 'Münster', 'Kasino', 'Rathaus', 'Nydeck Kirche'
+# Prüfen Sie:
+# - Wurde ein Parameter eingegeben?
+# - Ist das Ziel gültig?
 #
-# Wenn Sie noch Zeit haben, können Sie prüfen, ob ein gültiges Ziel eingegeben wurde
+# Ohne Ziel soll die Meldung erscheinen:
+# "Es wurde kein Ziel eingegeben!"
+# Anschliessend soll das Programm mit sys.exit() beendet werden.
 #
-# Vorhandene Funktionen
+# Gültige Ziele:
+# Käfigturm, Zytglogge, Bundeshaus, Münster, Kasino,
+# Rathaus, Nydeck Kirche
 #
-# go_right()   : Geht einen Schritt nach rechts
-# go_left()    : Geht einen Schritt nach links
-# go_up()      : Geht einen Schritt hoch
-# go_down()    : Geht einen Schritt runter
-# go_walk_right(x,y): Läuft zur Position x,y nach rechts
-# go_walk_left(x,y) : Läuft zur Position x,y nach links
-# Taste q      : Abbruch des Spiels
-#
-# Hinweis: Neuer Code nur im markierten Bereich eintragen
-#
+# Beispiel:
+# python U5_5_Stadtlauf_Bern_Parameter.py Zytglogge
 ####################################################
 
-#Module
-import time
 import sys
+import time
 
-##############################################
-#######################################
+####################################################
 # Hier kommt Ihr Code
+# Parameter prüfen und das Ziel in der Variable ziel speichern.
 
 
+# bis hier
+####################################################
 
-
-#bis hier
-#######################################
-##############################################
-
-#Wir laden diese Module erst, wenn klar ist wo es hin geht!
-import pygame
+# Diese Module werden erst geladen, wenn ein gültiges Ziel feststeht.
 from stadtlauf_bern_modul import *
 import U5_5_stadtlauf_Bern_Parameter_Wegdaten as wd
 
-d=1           #Anzahl Durchgänge
-slower=0.01   #Je höher die Zahl, umso langsamer läuft die Figur
+# Variablen
+d = 1
+slower = 0.01
 
-#Dictionary mit Positionsdaten für Sehenswürdigkeiten
-pos={}
-pos['Käfigturm']=(200,280,120,150)
-pos['Zytglogge']=(410,490,140,160)
-pos['Bundeshaus']=(190,240,180,250)
-pos['Münster']=(570,725,200,250)
-pos['Kasino']=(440,540,230,270)
-pos['Rathaus']=(660,750,60,110)
-pos['Nydeck Kirche']=(870,950,60,100)
+pos = {
+    "Käfigturm": (200, 280, 120, 150),
+    "Zytglogge": (410, 490, 140, 160),
+    "Bundeshaus": (190, 240, 180, 250),
+    "Münster": (570, 725, 200, 250),
+    "Kasino": (440, 540, 230, 270),
+    "Rathaus": (660, 750, 60, 110),
+    "Nydeck Kirche": (870, 950, 60, 100),
+}
 
-#Funktion
-def check_text(x,y):
-   ''' Prüfen ob eine Sehenswürdigkeit angezeigt werden soll'''
 
-   text2show,xt,yt='',x,y
+def check_text(x, y):
+    """Prüft, ob Marsi sich im Bereich einer Sehenswürdigkeit befindet."""
+    text2show, xt, yt = "", x, y
+    for name, (x_min, x_max, y_min, y_max) in pos.items():
+        if x_min < x < x_max and y_min < y < y_max:
+            text2show, xt, yt = name, x, y
+    return text2show, xt, yt
 
-   for p in pos.keys():
-      if x>pos[p][0] and x<pos[p][1] and y>pos[p][2] and y<pos[p][3]:
-         text2show=p
-         xt,yt=x,y
-         break
 
-   return text2show,xt,yt
+text2show = ""
+xt, yt = x, y
 
-#Start Game
 while run:
-    clock.tick(27)
+    if d > 0:
+        for gx, gy in wd.weg[ziel]:
+            time.sleep(slower)
+            x, y = go_walk_right(gx, gy)
+            text2show, xt, yt = check_text(x, y)
+            redrawGameWindow(text2show, xt, yt - 15)
 
-    if d>0:
-       #Lauf zu gewünschtem Ziel
-       if "ziel" in globals():
-          for wg in wd.weg[ziel]:
-             gx,gy=wg
-             time.sleep(slower)                #Laufgeschwindigkeit reduzieren
-             x,y=go_walk_right(gx,gy)          #Gehe zu Koordinaten nach rechts
-             text2show,xt,yt=check_text(x,y)   #Prüfen ob eine Sehenswürdigkeit angezeigt werden soll
-             redrawGameWindow(text2show,xt,yt-15) #Grafik neu darstellen
-       else:
-          text2show="Habe kein Ziel"
-          xt,yt=20,150
-          redrawGameWindow(text2show,xt,yt)  #Grafik neu darstellen
-    d-=1
+        d -= 1
+        go_stop()
+        redrawGameWindow(text2show, xt, yt - 15)
 
-    go_stop()
-    run=check_key()  #Prüfen ob und welche Taste gedrückt wurde
+    run = check_key()
+    text2show, xt, yt = check_text(x, y)
+    redrawGameWindow(text2show, xt, yt - 15)
 
-    redrawGameWindow(text2show,xt,yt-15)  #Grafik neu darstellen
-    
-#Ende Darstellung
-pygame.quit()
+screen.bye()

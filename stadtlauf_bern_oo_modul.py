@@ -1,177 +1,206 @@
-##############################################
-#
-# Name: stadtlauf_bern_oo_modul.py
-#
-# Author: Peter Christen
-#
-# Version: 1.0
-#
-# Date: 10.09.2022
-#
-# Purpose: Modul zu Script Stadtlauf_Bern_OO.py
-#
-##############################################
+"""Objektorientiertes Turtle-Modul für die Stadtlauf-Bern-Übungen."""
 
-#Module
-import pygame
+from pathlib import Path
+import time
+import turtle
 
-#Initialisierung
-pygame.init()
-pygame.display.set_caption("Spaziergang durch Bern")
-screen = pygame.display.set_mode((1050,400))
+BREITE = 1050
+HOEHE = 400
+BILDER = Path(__file__).resolve().parent / "Bilder"
 
-#Bilder
-walkRight = [pygame.image.load('Bilder/R1.png'), pygame.image.load('Bilder/R2.png'), pygame.image.load('Bilder/R3.png'), pygame.image.load('Bilder/R4.png'), pygame.image.load('Bilder/R5.png'), pygame.image.load('Bilder/R6.png'), pygame.image.load('Bilder/R7.png'), pygame.image.load('Bilder/R8.png'), pygame.image.load('Bilder/R9.png')]
-walkLeft = [pygame.image.load('Bilder/L1.png'), pygame.image.load('Bilder/L2.png'), pygame.image.load('Bilder/L3.png'), pygame.image.load('Bilder/L4.png'), pygame.image.load('Bilder/L5.png'), pygame.image.load('Bilder/L6.png'), pygame.image.load('Bilder/L7.png'), pygame.image.load('Bilder/L8.png'), pygame.image.load('Bilder/L9.png')]
-bg = pygame.image.load('Bilder/karte-bern_kl.jpg')
-char = pygame.image.load('Bilder/standing.png')
 
-#Variablen
-font = pygame.font.SysFont('Comic Sans MS', 20)
-clock = pygame.time.Clock()
-xt=0  #Standard Textposition x
-yt=0  #Standard Textposition y
-x = 20
-y = 155
-walkCount = 0
+def _bild(dateiname):
+    pfad = BILDER / dateiname
+    if not pfad.is_file():
+        raise FileNotFoundError(f"GIF-Datei fehlt: {pfad}")
+    return str(pfad)
 
-keys = pygame.key.get_pressed()
 
-def redrawGameWindow(text2show,xt,yt,x,y,left,right):
-      '''Baut das Bild neu auf'''
+KARTE = _bild("karte-bern_kl.gif")
+CHAR = _bild("standing.gif")
+walkRight = [_bild(f"R{i}.gif") for i in range(1, 10)]
+walkLeft = [_bild(f"L{i}.gif") for i in range(1, 10)]
 
-      global screen,walkCount
+screen = turtle.Screen()
+screen.setup(width=BREITE + 20, height=HOEHE + 20)
+screen.title("Spaziergang durch Bern – objektorientiert")
+screen.tracer(0, 0)
+screen.bgpic(KARTE)
 
-      textimg = font.render(text2show, True, (255, 0, 0))
-      screen.blit(bg, (0,0))  
-      screen.blit(textimg, (xt,yt))
-      if walkCount + 1 >= 27:
-         walkCount = 0
-        
-      if left:  
-         screen.blit(walkLeft[walkCount//3], (x,y))
-         walkCount += 1                          
-      elif right:
-         screen.blit(walkRight[walkCount//3], (x,y))
-         walkCount += 1
-      else:
-         screen.blit(char, (x, y))
-         walkCount = 0
-        
-      pygame.display.update() 
+for datei in [CHAR, *walkRight, *walkLeft]:
+    screen.register_shape(datei)
+
+_bildgroessen = {
+    datei: (screen._shapes[datei]._data.width(), screen._shapes[datei]._data.height())
+    for datei in [CHAR, *walkRight, *walkLeft]
+}
+
+_textstift = turtle.Turtle(visible=False)
+_textstift.penup()
+_textstift.speed(0)
+_textstift.color("red")
+
+_tasten = set()
+_beenden = False
+
+
+def _taste_druecken(taste):
+    _tasten.add(taste)
+
+
+def _taste_loslassen(taste):
+    _tasten.discard(taste)
+
+
+def _q_gedrueckt():
+    global _beenden
+    _beenden = True
+
+
+for _taste in ("Right", "Left", "Up", "Down"):
+    screen.onkeypress(lambda taste=_taste: _taste_druecken(taste), _taste)
+    screen.onkeyrelease(lambda taste=_taste: _taste_loslassen(taste), _taste)
+screen.onkeypress(_q_gedrueckt, "q")
+screen.listen()
+
+
+class Clock:
+    """Kleiner Ersatz für pygame.time.Clock()."""
+
+    def tick(self, fps):
+        if fps > 0:
+            time.sleep(1 / fps)
+
+
+clock = Clock()
+
+
+def _fenster_aktualisieren():
+    try:
+        screen.getcanvas().update()
+    except (turtle.Terminator, turtle.TurtleGraphicsError):
+        return False
+    return True
+
+
+def redrawGameWindow(text2show="", xt=None, yt=None, figur=None):
+    """Zeichnet eine Figur und optional den Text einer Sehenswürdigkeit.
+
+    figur ist ein Objekt der Klasse Figur. Die bisherigen x/y/left/right-
+    Einzelparameter werden dadurch nicht mehr benötigt.
+    """
+    _textstift.clear()
+    if text2show:
+        if xt is None:
+            xt = figur.x if figur else 0
+        if yt is None:
+            yt = figur.y if figur else 0
+        _textstift.goto(xt - BREITE / 2, HOEHE / 2 - yt)
+        _textstift.write(text2show, align="left", font=("Comic Sans MS", 20, "normal"))
+
+    if figur is not None:
+        figur.zeichnen()
+
+    screen.update()
+    _fenster_aktualisieren()
+
 
 class Figur:
-   '''Klasse zum Verwalten der Spielfigur'''
+    """Eine mit GIF-Bildern animierte Spielfigur."""
 
-   #Konstruktor Methode
-   def __init__(self,figur):
-      self.figur=figur   #Key Addtribut
-      self.x=20          #Start Position x
-      self.y=150         #Start Position y
-      self.max_x=1000    #Max Position x
-      self.max_y=340     #Max Position y
-      self.min_x=-10     #Min Position x
-      self.min_y=-10     #Min Position y
-      self.left = False  #Nicht Richtung links schauen
-      self.right = False #Nicht Richtung rechts schauen
+    def __init__(self, name):
+        self.name = name
+        self.x = 20
+        self.y = 155
+        self.end = 1050
+        self.left = False
+        self.right = False
+        self.walk_count = 0
+        self.sprite = turtle.Turtle(visible=False)
+        self.sprite.penup()
+        self.sprite.speed(0)
 
-   def go_walk_right(self,gx,gy):
-      '''Läuft nach einem vorgegebenen Plan nach rechts'''
+    def _bild_zeichnen(self, datei):
+        breite, hoehe = _bildgroessen[datei]
+        self.sprite.shape(datei)
+        self.sprite.goto(
+            self.x + breite / 2 - BREITE / 2,
+            HOEHE / 2 - self.y - hoehe / 2,
+        )
+        self.sprite.showturtle()
 
-      self.x,self.y=gx,gy
-      self.left = False
-      self.right = True
+    def zeichnen(self):
+        if self.walk_count + 1 >= 27:
+            self.walk_count = 0
 
-      return self.x,self.y,self.left,self.right
+        if self.left:
+            datei = walkLeft[self.walk_count // 3]
+            self.walk_count += 1
+        elif self.right:
+            datei = walkRight[self.walk_count // 3]
+            self.walk_count += 1
+        else:
+            datei = CHAR
+            self.walk_count = 0
 
-   def go_walk_left(self,gx,gy):
-      '''Läuft nach einem vorgegebenen Plan nach links'''
+        self._bild_zeichnen(datei)
 
-      self.x,self.y=gx,gy
-      self.left = True
-      self.right = False
+    def go_walk_right(self, gx, gy):
+        self.x, self.y = gx, gy
+        self.left, self.right = False, True
+        return self.x, self.y, self.left, self.right
 
-      return self.x,self.y,self.left,self.right
+    def go_walk_left(self, gx, gy):
+        self.x, self.y = gx, gy
+        self.left, self.right = True, False
+        return self.x, self.y, self.left, self.right
 
-   def go_left(self,steps=1):
-      '''Nach links gehen'''
+    def go_left(self, steps=1):
+        if self.x > 1:
+            self.x -= steps
+            self.left, self.right = True, False
+        else:
+            self.go_stop()
+        return self.x, self.y, self.left, self.right
 
-      if self.x > self.min_y:
-         self.x -= steps
-         self.left = True
-         self.right = False
-         return self.x,self.left,self.right
-      else:
-         self.go_stop()
+    def go_right(self, steps=1):
+        if self.x < self.end:
+            self.x += steps
+            self.left, self.right = False, True
+        else:
+            self.go_stop()
+        return self.x, self.y, self.left, self.right
 
-   def go_right(self,steps=1):
-      '''Nach rechts gehen'''
-     
-      if self.x < self.max_x:
-         self.x += steps
-         self.left = False
-         self.right = True
-         return self.x,self.left,self.right
-      else:
-         self.go_stop()
+    def go_up(self, steps=1):
+        self.y -= steps
+        return self.x, self.y, self.left, self.right
 
-   def go_stop(self):
-      '''Bewegung stoppen'''
+    def go_down(self, steps=1):
+        self.y += steps
+        return self.x, self.y, self.left, self.right
 
-      self.left = False
-      self.right = False
-      walkCount = 0
+    def go_stop(self):
+        self.left, self.right = False, False
+        return self.x, self.y, self.left, self.right
 
-      return walkCount,self.left,self.right
+    def check_key(self):
+        """Steuert genau dieses Objekt mit Pfeiltasten; q beendet das Spiel."""
+        if not _fenster_aktualisieren() or _beenden:
+            return self.x, self.y, self.left, self.right, False
 
-   def go_up(self,steps=1):
-      '''Nach oben gehen'''
+        if "Right" in _tasten:
+            self.go_right(2)
+            print("Position x,y: ", self.x, self.y)
+        elif "Left" in _tasten:
+            self.go_left(2)
+            print("Position x,y: ", self.x, self.y)
 
-      if self.y > self.min_y:
-         self.y-=steps
-         return self.y
-      else:
-         self.go_stop()
+        if "Up" in _tasten:
+            self.go_up()
+            print("Position x,y: ", self.x, self.y)
+        elif "Down" in _tasten:
+            self.go_down()
+            print("Position x,y: ", self.x, self.y)
 
-   def go_down(self,steps=1):
-      '''Nach unten gehen'''
-
-      if self.y < self.max_y:
-         self.y+=steps
-         return self.y
-      else:
-         self.go_stop()
-
-   def check_key(self):
-      '''Prüfen welche Taste gedrückt wurde'''
-
-      self.left=False
-      self.right=False
-
-      for event in pygame.event.get():
-         if event.type == pygame.QUIT:
-            run = False
-
-      keys = pygame.key.get_pressed()
-      if keys[pygame.K_RIGHT]:
-         self.go_right(1)
-         self.right=True
-         print("Position x,y: ",self.x,self.y)
-      elif keys[pygame.K_LEFT]:
-         self.go_left(1)
-         self.left=True
-         print("Position x,y: ",self.x,self.y)
-
-      if keys[pygame.K_UP]:
-         self.go_up(1)
-         print("Position x,y: ",self.x,self.y)
-      elif keys[pygame.K_DOWN]:
-         self.go_down(1)
-         print("Position x,y: ",self.x,self.y)
-
-      if keys[pygame.K_q]: 
-         return self.x,self.y,self.left,self.right,False
-      else: 
-         return self.x,self.y,self.left,self.right,True
-       
-
+        time.sleep(1 / 60)
+        return self.x, self.y, self.left, self.right, True

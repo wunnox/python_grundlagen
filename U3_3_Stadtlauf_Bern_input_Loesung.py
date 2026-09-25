@@ -1,77 +1,68 @@
-####################################################
-#
-# Uebung:
-# Fügen Sie im markierten Bereich folgender Code ein:
-#
-#   - Lesen Sie mit «input» die Anzahl Schritte ein, welche die Figur laufen soll
-#   - Fügen Sie im markierten Bereich folgender Code ein:
-#
-#   - Eine input-Funktion, mit welcher die Anzahl Schritte eingegeben werden kann, welche die Figur laufen soll
-#   - Prüfen Sie die Eingabe, bei weniger als 10 Schritten wird er Wert auf 10 gesetzt, bei mehr als 450 Schritten soll er auf 450 gesetzt werden
-#   - Verwenden Sie zum Einlesen des Wertes in input die Variable "schritte"
-#   - Sobald die Figur beim Zytglogge Turm ankommt, beendet sich das Spiel
-#
-# Vorhandene Funktionen
-#
-# go_right()   : Geht einen Schritt nach rechts
-# go_left()    : Geht einen Schritt nach links
-# go_up()      : Geht einen Schritt hoch
-# go_down()    : Geht einen Schritt runter
-# Taste q      : Abbruch des Spiels
-#
-# Hinweis: Neuer Code nur im markierten Feld eintragen
-#
-####################################################
+"""Musterlösung: Eingabe von Schritten für den Stadtlauf mit Turtle.
 
-#Module
-import pygame
+Benötigt stadtlauf_bern_modul.py sowie die GIF-Bilder in Bilder/.
+Die Eingabe erfolgt im Terminal; danach läuft Marsi im Turtle-Fenster.
+"""
+
 import time
-from stadtlauf_bern_modul import *
+import stadtlauf_bern_modul as sf
 
-#Variablen
-schritte=0    #Anzahl Schritte
-slower=0.01   #Je höher die Zahl, umso langsamer läuft die Figur
+SLOWER = 0.01
+MAX_X = 450
 
 
-#Start der Darstellung
-while run:
-    clock.tick(27)
+def lauf(schritte):
+    """Bewegt Marsi um höchstens 'schritte' Positionen nach rechts."""
+    for _ in range(schritte):
+        time.sleep(SLOWER)
+        x = sf.go_right()
+        if x is None:
+            break
 
-    #Lauf zu Zytglogge Turm
-    for i in range(schritte):
-      time.sleep(slower)      #Laufgeschwindigkeit reduzieren
-      x=go_right()            #Gehe nach rechts
-      if x%10==0 and x<=210:  #Nach jedem 10ten Schritt ein Schritt hoch
-         y=go_up()
-      elif x%10==0 and x<450: #Nach jedem 10ten Schritt ein Schritt runter
-         y=go_down()
+        if x % 10 == 0 and x <= 210:
+            sf.go_up()
+        elif x % 10 == 0 and x < MAX_X:
+            sf.go_down()
 
-      redrawGameWindow()      #Grafik neu darstellen
+        sf.redrawGameWindow()
 
-      if x>450: 
-         go_stop()
-         redrawGameWindow("Weiter geht's nicht mehr",x,y-15)  #Grafik neu darstellen
-         time.sleep(2)
-         break
+        if x > MAX_X:
+            sf.go_stop()
+            sf.redrawGameWindow("Weiter geht's nicht mehr", x, sf.y - 10)
+            return False
 
-    if x>450: break
-    go_stop()
-    run=check_key()  #Prüfen ob und welche Taste gedrückt wurde
-    redrawGameWindow()  #Grafik neu darstellen
+    sf.go_stop()
+    sf.redrawGameWindow()
+    return True
 
-##############################################
-    #######################################
-    # Hier kommt Ihr Code
 
-    schritte=int(input("Geben Sie die Anzahl Schritte zw. 10 und 450 ein: "))
-    if schritte>450:
-       schritte=450
-    elif schritte<10:
-       schritte=10
-    
-    #bis hier
-    #######################################
-##############################################
+def main():
+    sf.redrawGameWindow()
 
-#Ende Darstellung
-pygame.quit()
+    while True:
+        try:
+            schritte = int(input("Geben Sie die Anzahl Schritte zw. 10 und 450 ein: "))
+        except ValueError:
+            print("Bitte eine ganze Zahl eingeben.")
+            continue
+        except (EOFError, KeyboardInterrupt):
+            break
+
+        if schritte > 450:
+            schritte = 450
+        elif schritte < 10:
+            schritte = 10
+
+        if not lauf(schritte):
+            # Das automatische Spiel endet am Zytglogge; das Fenster bleibt
+            # sichtbar, bis es geschlossen oder q gedrückt wird.
+            break
+
+    try:
+        sf.screen.mainloop()
+    except sf.turtle.Terminator:
+        pass
+
+
+if __name__ == "__main__":
+    main()
