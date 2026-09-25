@@ -13,7 +13,7 @@
 ####################################################
 
 import stadtlauf_bern_oo_modul as sf
-from U5_6_stadtlauf_Bern_check_text_turtle import check_text
+from U5_6_stadtlauf_Bern_check_text import check_text
 
 run = True
 marsi = sf.Figur("Marsi")

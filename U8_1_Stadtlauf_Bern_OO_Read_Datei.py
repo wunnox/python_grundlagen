@@ -14,7 +14,7 @@
 
 import time
 import stadtlauf_bern_oo_modul as sf
-from U5_6_stadtlauf_Bern_check_text_turtle import check_text
+from U5_6_stadtlauf_Bern_check_text import check_text
 
 SLOWER = 0.01
 marsi = sf.Figur("Marsi")
