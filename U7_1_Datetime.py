@@ -8,15 +8,17 @@
 
 #### Lösung: ####
 # KI-Promt
-# Ich bin am 20.06.1965 geboren, erstellen ein Python Script, welches mein Alter in Jahren ausgibt.
+# Ich bin am 20.06.1965 geboren, erstellen ein Python Script mit datetime, welches mein Alter in Jahren ausgibt.
 
-import datetime
+from datetime import date
 
-heute = datetime.datetime.now()
-datum=heute.strftime("%d.%m.%Y %H:%M")
-print ("Heutiges Datum:", datum)
+geburtstag = date(1965, 6, 20)
+heute = date.today()
 
-diff=(heute-datetime.datetime(1965,6,20,16,0)).total_seconds()
-print ("Sekunden seit meiner Geburt:", int(round(diff)))
-print ("Tage seit meiner Geburt:", int(round(diff/86400,0)))
-print ("Jahre seit meiner Geburt:", int(round(diff/86400/365.25,0)))
+alter = heute.year - geburtstag.year
+
+# Falls der Geburtstag dieses Jahr noch bevorsteht: ein Jahr abziehen
+if (heute.month, heute.day) < (geburtstag.month, geburtstag.day):
+    alter -= 1
+
+print(f"Du bist {alter} Jahre alt.")
